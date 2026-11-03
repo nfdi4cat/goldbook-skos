@@ -1,0 +1,156 @@
+# ==== General Configuration ====
+# Documentation of the TOML format: https://toml.io/en/latest
+
+# Configuration format version (for future compatibility)
+config_version = "v1.0"
+
+# Allow only a single vocabulary (default) or multiple vocabularies in the repository.
+single_vocab = true
+
+# ==== Configuration for vocabulary "vocab_example" ====
+
+# The name of the vocabulary is used as section name.
+# It should match the filename-stem of the vocabulary files.
+[vocabs.vocab_example]
+# Length of integer IDs in vocabulary. IDs will be left-padded with zeros to specified length.
+id_length = 7
+# permanent part of IRIs defined in the vocabulary (used to construct concept IRIs)
+permanent_iri_part = "https://example.org/test/"
+
+# ==== ConceptScheme Metadata ====
+# Fields marked MANDATORY must be filled before use.
+
+# MANDATORY: IRI for the vocabulary (skos:ConceptScheme)
+vocabulary_iri = "https://example.org/test/"
+
+# Optional: Registered (or preferred) prefix for this vocabulary
+prefix = "ex"
+
+# MANDATORY: Title of the vocabulary
+title = "My Vocabulary"
+
+# MANDATORY: General description of the vocabulary
+description = "Description of the vocabulary"
+
+# MANDATORY: Date of creation (ISO-8601 format: YYYY-MM-DD)
+created_date = "2025-01-01"
+
+# MANDATORY: Creator(s) - multi-line text, each line: "<name> <orcid-URL or ror-URL>"
+creator = """
+Alice Smith https://orcid.org/0000-0001-2345-6788
+Sofia Garcia https://orcid.org/0000-0001-2345-6789
+"""
+
+# MANDATORY: Publisher - single line of text: "<name> <orcid-URL or ror-URL>"
+# The vp4cat profile requires exactly one publisher (requirement 2.1.6).
+publisher = """
+Example Organization https://ror.org/04fa4r544
+"""
+
+# Optional: Custodian(s) - multi-line text, each line: "<name> <orcid-URL or ror-URL>"
+# Becomes dcat:contactPoint. A line carrying a URL yields an IRI, plain text
+# yields a literal.
+custodian = """
+Sofia Garcia https://orcid.org/0000-0001-2345-6789
+"""
+
+# Optional: DOI or other catalogue persistent identifier
+# catalogue_pid = ""
+
+# Optional: URL of documentation or guidelines
+# documentation = ""
+
+# Optional: URL of issue tracker
+# issue_tracker = ""
+
+# Optional: URL of helpdesk
+# helpdesk = ""
+
+# MANDATORY: URL of repository or online vocabulary editor
+# repository = "https://github.com/YOUR-ORG/YOUR-REPO"
+repository = "https://github.com/nfdi4cat/voc4cat-template"
+
+# Optional: Jinja template for provenance URLs (git blame links)
+# Available template variables: entity_id, vocab_name, version, github_repo,
+# partition_dir (the "IDs<n>xxx" subdirectory that holds the entity file)
+# Default: GitHub blame URL format (auto-detected from repository field)
+# Examples for other forges:
+# GitHub (default): "https://github.com/{{ github_repo }}/blame/{{ version }}/vocabularies/{{ vocab_name }}/{{ partition_dir }}/{{ entity_id }}.ttl"
+# GitLab: "https://gitlab.com/myorg/myrepo/-/blame/{{ version }}/vocabularies/{{ vocab_name }}/{{ partition_dir }}/{{ entity_id }}.ttl"
+# Gitea: "https://gitea.example.com/myorg/myrepo/blame/{{ version }}/vocabularies/{{ vocab_name }}/{{ partition_dir }}/{{ entity_id }}.ttl"
+# provenance_url_template = ""
+
+# Optional: Jinja template for the concept links in voc-assistant reports.
+# Must contain {{ entity_id }}, the numeric concept ID. Without it a concept
+# links to its own permanent IRI, so reports are useful unconfigured.
+# concept_url_template = "https://myorg.github.io/myvocab/index.html#https://example.org/{{ entity_id }}"
+
+# Optional: URL of homepage
+# homepage = ""
+
+# Optional: URL of SHACL profile(s) the vocabulary conforms to
+# conforms_to = ""
+
+# Optional: Path to local SHACL profile file for validation
+# Path is relative to this idranges.toml file location
+# profile_local_path = "profiles/vocpub-5.2-validator.ttl"
+
+# ==== Checks Configuration ====
+# Section to configure checks (useful in CI pipeline)
+[vocabs.vocab_example.checks]
+# Deleting allowed (relevant in CI-pipeline)
+allow_delete = false
+
+# ==== Prefix Map ====
+# Namespace prefix mappings used for CURIE expansion/compression
+[vocabs.vocab_example.prefix_map]
+ex = "https://example.org/"
+
+# ==== ID Ranges ====
+# Section of IDranges for coordinating the allocation of numeric ID ranges to
+# contributors for each vocabulary. Each idrange contains the same keys:
+#
+# first_id = <int>            - first reserved integer ID in idrange
+# last_id = <int>             - last reserved integer ID in idrange
+# gh_name = "<string>"        - user or organisation name on github
+# orcid = "<string> or <url>" - contributor's ORCID, e.g. "0000-0002-1825-0097" or "https://orcid.org/0000-0002-1825-0097"
+# ror_id = "<url>"            - ROR identifier of home organisation, e.g. "https://ror.org/04fa4r544"
+# name = "<string>"           - (optional) human-readable name for contributor display (e.g. from ORCID profile)
+#
+# Note: Contributors are auto-derived from ID range usage. Anyone who used IDs
+# from their reserved range will be listed as dct:contributor in the output.
+
+[[vocabs.vocab_example.id_range]]
+first_id = 1
+last_id = 10
+gh_name = "sofia-garcia"
+name = "Sofia Garcia"
+orcid = "0000-0001-2345-6789"
+ror_id = "https://ror.org/04fa4r544"
+
+[[vocabs.vocab_example.id_range]]
+first_id = 11
+last_id = 20
+gh_name = "another-contributor"
+orcid = ""
+ror_id = ""
+
+# Continue with as many [[vocabs.vocab_example.id_range]] sections as needed.
+
+# ==== Accepted Similarities ====
+# Concept pairs that voc-assistant reports and that the vocabulary
+# maintainers reviewed and accepted. They are listed in a separate section
+# of its report and do not fail the duplicate screening of a pull request.
+# Both keys are required. An entry naming a concept that is not in the
+# vocabulary, or matching no reported pair, is reported as unused, so the
+# list does not go stale unnoticed.
+#
+# [[vocabs.vocab_example.accepted_similarity]]
+# concepts = ["ex:test/0000001", "ex:test/0000002"]
+# reason = "Homonyms in different facets; decided in issue #42."
+
+# More vocabularies can be configured by adding sections with appropriate name.
+# [vocabs.othervocab]
+# [vocabs.othervocab.checks]
+# [vocabs.othervocab.prefix_map]
+# [[vocabs.othervocab.id_range]]

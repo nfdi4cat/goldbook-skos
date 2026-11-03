@@ -1,0 +1,20 @@
+name: 🐞 Bug
+description: File a bug report
+title: "🐞 <title>"
+labels: ["bug"]
+body:
+- type: input
+  id: version
+  attributes:
+    label: Observed in version
+    description: "Please provide the vocabulary version."
+  validations:
+    required: false
+
+- type: textarea
+  id: description
+  attributes:
+    label: Description
+    description: Which issue did you observe?
+  validations:
+    required: false

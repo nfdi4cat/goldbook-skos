@@ -1,0 +1,235 @@
+# This action runs when a pull request to main is created or updated
+# (but not when it is merged into main).
+#
+# This is the unprivileged half of the PR pipeline. It runs on "pull_request",
+# so for pull requests from forks GitHub withholds all secrets and issues a
+# read-only GITHUB_TOKEN. The job therefore cannot push anywhere, whatever the
+# fork-controlled files it processes may contain.
+#
+# The converted vocabulary is handed to ci-pr-commit.yml through an artifact.
+# That workflow holds the write token and commits the result to the PR branch
+# without running any tooling over fork-controlled content.
+# See issue nfdi4cat/voc4cat-template#127.
+
+name: CI on pull request create or update
+on:
+  pull_request:
+    branches:
+      - main
+    types: [opened, reopened, synchronize]
+  workflow_dispatch:
+
+env:
+  PIP_DISABLE_PIP_VERSION_CHECK: "1"
+  PIP_PROGRESS_BAR: "off"
+  LOGLEVEL: "DEBUG"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions: {}
+
+jobs:
+  build_vocab:
+    name: Merge & build vocabulary
+    # Run on all pull request types except merge which has its own workflow.
+    if: ${{ !github.event.pull_request.merged }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    permissions:
+      contents: read  # This job never pushes; ci-pr-commit.yml does that.
+
+    steps:
+      - name: Checkout PR head into cwd
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+        with:
+          # The PR head is taken from the base repository via refs/pull/<n>/head,
+          # so "origin" is the upstream repository. This makes the
+          # "--diff-base origin/main" below compare against the real main branch
+          # instead of a possibly stale copy of main in the fork.
+          ref: >-
+            ${{ github.event_name == 'pull_request'
+                && format('refs/pull/{0}/head', github.event.pull_request.number)
+                || github.ref }}
+          # The full history is required for "voc4cat transform --prov-from-git" below.
+          fetch-depth: 0
+          # No credentials on disk while fork-controlled files are processed.
+          persist-credentials: false
+
+      - name: Make origin/main available for provenance diffing
+        # The checkout above fetched a single ref. Fetch main explicitly rather
+        # than relying on the action's default refspec.
+        run: git fetch --no-tags origin +refs/heads/main:refs/remotes/origin/main
+
+      - name: Checkout main branch into directory _main_branch/
+        # Supplies two things that every voc4cat call below depends on:
+        #
+        # - idranges.toml. The config is always read from main, never from the
+        #   pull request, so the ID ranges enforced are the ones already
+        #   approved there. A pull request therefore cannot allocate itself a
+        #   range and use it in the same pull request: the allocation has to be
+        #   reviewed and merged first, and only then can the IDs be used. Do
+        #   not change these paths to the branch copy without replacing that
+        #   control - it predates the pull_request_target mitigation and is not
+        #   a leftover of it.
+        # - vocabularies/, the baseline that "check --ci-pre" and "--ci-post"
+        #   compare the submission against.
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+        with:
+          ref: main
+          path: _main_branch
+          # This sparse-checkout includes all toplevel files and everything below vocabularies/
+          sparse-checkout: |
+            vocabularies/
+          fetch-depth: 1
+          persist-credentials: false
+
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0  # v7.1.0
+        with:
+          python-version: '3.13'
+
+      - name: Install dependencies
+        run: |
+          python -VV
+          python -m pip install --upgrade pip setuptools wheel
+
+          # Select to install a stable tagged version or main branch (in development)
+          python -m pip install git+https://github.com/nfdi4cat/voc4cat-tool.git@v1.2.0
+          # python -m pip install git+https://github.com/nfdi4cat/voc4cat-tool.git@main
+
+          # install custom pylode 2.x  (adds sorted collections,
+          #    uses URIs as fragment IDs and is git-installable)
+          python -m pip install git+https://github.com/dalito/pyLODE.git@nfdi4cat-2.x
+
+      - name: Set dynamic environment variables.
+        run: |  # zizmor: ignore[github-env] safe without user controllable input
+          echo "RUN_DATE=$(date +'%Y-%m-%dT%H%M')" >> $GITHUB_ENV
+
+      - name: Run voc4cat (pre-convert checks)
+        run: |
+          voc4cat --version
+          # check inbox file names
+          voc4cat check --config _main_branch/idranges.toml --logfile outbox/voc4cat.log --ci-pre inbox-excel-vocabs/ _main_branch/vocabularies
+          # check xlsx file(s). If the check fails, write annotated file to outbox.
+          voc4cat check --config _main_branch/idranges.toml --logfile outbox/voc4cat.log --outdir outbox inbox-excel-vocabs/
+
+      - name: Run voc4cat (convert)
+        run: |
+          # convert file(s) from xlsx in inbox to turtle in outbox
+          voc4cat convert --config _main_branch/idranges.toml --logfile outbox/voc4cat.log --outdir outbox inbox-excel-vocabs/
+          if [ -z "$(ls outbox/*.ttl 2>/dev/null)" ]; then
+            echo "No ttl file in outbox. Building joined vocabulary ttl-file from individual ttl-files in vocabulary."
+            voc4cat transform --join --config _main_branch/idranges.toml --logfile outbox/voc4cat.log --outdir outbox/ vocabularies/
+          fi
+
+      - name: Run voc4cat (post-convert checks)
+        env:
+          # The ID ranges belong to the contributor who submitted the concepts.
+          # GITHUB_ACTOR names whoever started the run, which is the CI bot for
+          # the run that the commit of ci-pr-commit.yml triggers, and that bot
+          # holds no range. See issue nfdi4cat/voc4cat-template#136.
+          PR_AUTHOR: ${{ github.event.pull_request.user.login || github.actor }}
+        run: |
+          # check all ttl file(s) in outbox
+          voc4cat check --redundant-hierarchies --config _main_branch/idranges.toml --logfile outbox/voc4cat.log outbox/
+          # check if vocabulary changes are allowed. GITHUB_ACTOR is replaced for
+          # this command only: the env key above and GITHUB_ENV both refuse to
+          # overwrite a GITHUB_* variable, a shell assignment does not.
+          GITHUB_ACTOR="$PR_AUTHOR" voc4cat check --config _main_branch/idranges.toml --logfile outbox/voc4cat.log --ci-post _main_branch/vocabularies outbox/
+
+      - name: Run voc-assistant (screen added concepts for duplicate labels)
+        run: |
+          set -euo pipefail
+          # voc-assistant compares two files and both are named after the
+          # vocabulary, so the published copy needs a directory of its own.
+          # Its config is read from main like every other call here: an
+          # accepted_similarity entry that takes a pair out of this gate has
+          # to be reviewed and merged before it counts.
+          voc4cat transform --join --config _main_branch/idranges.toml --logfile outbox/voc4cat.log --outdir _published _main_branch/vocabularies
+          status=0
+          for voc in outbox/*.ttl; do
+            published="_published/$(basename "$voc")"
+            if [ ! -f "$published" ]; then
+              echo "::notice::$voc has no published counterpart; nothing to compare it against."
+              continue
+            fi
+            report="outbox/duplicates-new-$(basename "$voc" .ttl).md"
+            rc=0
+            # Labels only: that needs no sbert install and beats semantic
+            # scoring on spelling variants, which is what a duplicate looks
+            # like. --hide-accepted keeps the summary to the pairs that need
+            # a decision; a stale allow-list is still reported.
+            voc-assistant compare "$published" "$voc" \
+              --method levenshtein --definitions none --hide-accepted \
+              --config _main_branch/idranges.toml --logfile outbox/voc4cat.log \
+              --output "$report" || rc=$?
+            if [ "$rc" -eq 0 ]; then
+              echo "No similarities to decide on in $(basename "$voc")." >> "$GITHUB_STEP_SUMMARY"
+            else
+              status=$rc
+              if [ -f "$report" ]; then cat "$report" >> "$GITHUB_STEP_SUMMARY"; fi
+            fi
+          done
+          exit $status
+
+      - name: Run voc4cat (build HTML documentation)
+        run: |
+          voc4cat docs --logfile outbox/voc4cat.log --force outbox/
+
+      - name: Split vocabulary, merge into vocabulary dir (in PR branch) and update provenance info
+        run: |
+          voc4cat transform --split --inplace  --config _main_branch/idranges.toml --logfile outbox/voc4cat.log --outdir outbox_new_voc outbox/
+          voc4cat-merge --logfile outbox/voc4cat.log  outbox_new_voc/ vocabularies/
+          # copy xlsx to outbox so that the xlsx file is part of the artifact
+          find inbox-excel-vocabs -name '*.xlsx' -exec cp {} -t outbox/ \;
+          git status
+          # Add/update dct:created and dct:modified base on git history
+          voc4cat transform --prov-from-git --diff-base origin/main --modified-date "$(date +'%Y-%m-%d')" --inplace --config _main_branch/idranges.toml --logfile outbox/voc4cat.log vocabularies/
+
+      - name: Run voc4cat (re-build updated Excel file and joined turtle vocabulary file)
+        # Passing the config is important to make use of the prefixes therein.
+        run: |
+          mkdir -p outbox/updated-xlsx-ttl
+          voc4cat transform --join --config _main_branch/idranges.toml --logfile outbox/voc4cat.log --outdir outbox/updated-xlsx-ttl vocabularies/
+          # Using a template is optional and gives just a warning if missing.
+          voc4cat convert --config _main_branch/idranges.toml --logfile outbox/voc4cat.log --template templates/default_sheets.xlsx outbox/updated-xlsx-ttl
+
+      - name: Store artifacts
+        if: ${{ always() }}
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9  # v7.0.2
+        with:
+          name: voc4cat-outbox_${{ env.RUN_DATE }}_run${{ github.run_id }}
+          path: outbox/
+
+      - name: Assemble hand-off for the commit workflow
+        if: ${{ github.event_name == 'pull_request' }}
+        env:
+          # Passed as environment variables rather than interpolated into the
+          # script, so that a crafted branch name cannot inject shell syntax.
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          HEAD_REPO: ${{ github.event.pull_request.head.repo.full_name }}
+          HEAD_REF: ${{ github.event.pull_request.head.ref }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          mkdir -p handoff
+          cp -r vocabularies handoff/vocabularies
+          # jq builds the JSON so that every value is escaped correctly.
+          jq -n \
+            --argjson number "$PR_NUMBER" \
+            --arg head_repo "$HEAD_REPO" \
+            --arg head_ref "$HEAD_REF" \
+            --arg head_sha "$HEAD_SHA" \
+            '{number: $number, head_repo: $head_repo, head_ref: $head_ref, head_sha: $head_sha}' \
+            > handoff/pr-context.json
+          cat handoff/pr-context.json
+
+      - name: Upload hand-off for the commit workflow
+        if: ${{ github.event_name == 'pull_request' }}
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9  # v7.0.2
+        with:
+          name: voc4cat-pr-changes
+          path: handoff/
+          retention-days: 1
