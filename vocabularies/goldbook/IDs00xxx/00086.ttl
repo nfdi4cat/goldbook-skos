@@ -1,0 +1,22 @@
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX goldbook: <https://w3id.org/goldbook/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+goldbook:00086
+    a skos:Concept ;
+    dcterms:created "2026-11-04"^^xsd:date ;
+    dcterms:identifier "00086"^^xsd:token ;
+    dcterms:license <https://creativecommons.org/licenses/by-sa/4.0/> ;
+    dcterms:modified "2026-11-04"^^xsd:date ;
+    dcterms:provenance <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs00xxx/00086.ttl> ;
+    dcterms:rightsHolder "International Union of Pure and Applied Chemistry (IUPAC)" ;
+    rdfs:seeAlso <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs00xxx/00086.ttl> ;
+    skos:definition "The quantity of light available to molecules at a particular point in the atmosphere and which, on absorption, drives photochemical processes in the atmosphere. It is calculated by integrating the spectral radiance \\(L \\left(\\lambda,\\,\\theta,\\,\\varphi\\,\\right)\\) over all directions of incidence of the light, \\(S_{\\lambda} = \\int _{\\theta}\\, \\int _{\\phi} \\{L\\left (\\lambda,\\theta,\\varphi \\right)/(hc/\\lambda)\\}\\, \\rm{sin}\\,\\theta\\: \\rm{d}\\theta\\: \\rm{d}\\varphi\\). If the radiance is expressed in \\(\\pu{J m-2 s-1 st-1 nm-1}\\) and \\(hc/\\lambda\\) is the energy per quantum of light of wavelength \\(\\lambda\\), the actinic flux has units of \\(\\rm{quanta cm}^{-2}\\ \\rm{s}^{-1}\\ \\rm{nm}^{-1}\\). This important quantity is one of the terms required in the calculation of j-values, the first order rate coefficients for photochemical processes in the sunlight-absorbing, trace gases in the atmosphere. The actinic flux is determined by the solar radiation entering the atmosphere and by any changes in this due to atmospheric gases and particles (e.g. Rayleigh scattering absorption by stratospheric ozone, scattering and absorption by aerosols and clouds), and reflections from the ground. It is therefore dependent on the wavelength of the light, on the altitude and on specific local environmental conditions. The actinic flux has borne many names (e.g. flux, flux density, beam irradiance, actinic irradiance, integrated intensity) which has caused some confusion. It is important to distinguish the actinic flux from the spectral irradiance, which refers to energy arrival on a flat surface having fixed spatial orientation (\\(\\pu{J m-2 nm-1}\\)) given by: \\[E_{\\lambda} = \\int _{\\theta}\\, \\int _{\\phi} L\\left (\\lambda,\\theta,\\varphi \\right )\\, \\rm{cos}\\,\\theta  \\: \\rm{sin}\\,\\theta\\: \\rm{d}\\theta\\: \\rm{d}\\varphi\\] The actinic flux does not refer to any specific orientation because molecules are oriented randomly in the atmosphere. This distinction is of practical relevance: the actinic flux (and therefore a j-value) near a brightly reflecting surface (e.g. over snow or above a thick cloud) can be a factor of three higher than that near a non-reflecting surface. The more descriptive name of spectral spheradiance is suggested for the quantity herein called actinic flux."@en ;
+    skos:inScheme goldbook: ;
+    skos:prefLabel "actinic flux"@en ;
+    skos:topConceptOf goldbook: ;
+    prov:hadPrimarySource <https://doi.org/10.1351/goldbook.A00086> ;
+.

@@ -1,0 +1,22 @@
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX goldbook: <https://w3id.org/goldbook/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+goldbook:00535
+    a skos:Concept ;
+    dcterms:created "2026-11-04"^^xsd:date ;
+    dcterms:identifier "00535"^^xsd:token ;
+    dcterms:license <https://creativecommons.org/licenses/by-sa/4.0/> ;
+    dcterms:modified "2026-11-04"^^xsd:date ;
+    dcterms:provenance <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs00xxx/00535.ttl> ;
+    dcterms:rightsHolder "International Union of Pure and Applied Chemistry (IUPAC)" ;
+    rdfs:seeAlso <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs00xxx/00535.ttl> ;
+    skos:definition "Three-electrode cells comprise (1) an indicator (or test) electrode or a working electrode, at the surface of which processes that are of interest may occur, (2) a reference electrode and (3) a third electrode, the auxiliary or counter electrode, which serves merely to carry the current flowing through the cell, and at the surface of which no processes of interest occur. If processes of interest occur at both the anode and the cathode of a cell (as in differential amperometry or controlled current potentiometric titration with two indicator electrodes), the cell should be said to comprise two indicator (or test) working electrodes."@en ;
+    skos:inScheme goldbook: ;
+    skos:prefLabel "auxiliary electrode"@en ;
+    skos:topConceptOf goldbook: ;
+    prov:hadPrimarySource <https://doi.org/10.1351/goldbook.A00535> ;
+.

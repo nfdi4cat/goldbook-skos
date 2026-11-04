@@ -1,0 +1,22 @@
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX goldbook: <https://w3id.org/goldbook/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+goldbook:00279
+    a skos:Concept ;
+    dcterms:created "2026-11-04"^^xsd:date ;
+    dcterms:identifier "00279"^^xsd:token ;
+    dcterms:license <https://creativecommons.org/licenses/by-sa/4.0/> ;
+    dcterms:modified "2026-11-04"^^xsd:date ;
+    dcterms:provenance <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs00xxx/00279.ttl> ;
+    dcterms:rightsHolder "International Union of Pure and Applied Chemistry (IUPAC)" ;
+    rdfs:seeAlso <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs00xxx/00279.ttl> ;
+    skos:definition "When two or more amino acids combine to form a peptide, the elements of water are removed, and what remains of each amino acid is called an amino-acid residue. $\\ce{\\upalpha\\!\\mbox{-}Amino-acid}$ residues are therefore structures that lack a hydrogen atom of the amino group ($\\ce{–NH–CHR–COOH}$), or the hydroxyl moiety of the carboxyl group ($\\ce{NH2–CHR–CO\\bond{–}}$), or both ($\\ce{–NH–CHR–CO\\bond{–}}$); all units of a peptide chain are therefore amino-acid residues. (Residues of amino acids that contain two amino groups or two carboxyl groups may be joined by isopeptide bonds, and so may not have the formulas shown.) The residue in a peptide that has an amino group that is free, or at least not acylated by another amino-acid residue (it may, for example, be acylated or formylated), is called N-terminal; it is at the N-terminus. The residue that has a free carboxyl group, or at least does not acylate another amino-acid residue, (it may, for example, acylate ammonia to give $\\ce{–NH–CHR–CO–NH2}$), is called C-terminal."@en ;
+    skos:inScheme goldbook: ;
+    skos:prefLabel "amino-acid residue"@en ;
+    skos:topConceptOf goldbook: ;
+    prov:hadPrimarySource <https://doi.org/10.1351/goldbook.A00279> ;
+.

@@ -1,0 +1,22 @@
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX goldbook: <https://w3id.org/goldbook/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+goldbook:00228
+    a skos:Concept ;
+    dcterms:created "2026-11-04"^^xsd:date ;
+    dcterms:identifier "00228"^^xsd:token ;
+    dcterms:license <https://creativecommons.org/licenses/by-sa/4.0/> ;
+    dcterms:modified "2026-11-04"^^xsd:date ;
+    dcterms:provenance <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs00xxx/00228.ttl> ;
+    dcterms:rightsHolder "International Union of Pure and Applied Chemistry (IUPAC)" ;
+    rdfs:seeAlso <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs00xxx/00228.ttl> ;
+    skos:definition "Univalent groups derived from alkanes by removal of a hydrogen atom from any carbon atom $\\ce{–C_{n}H_{2n+1}}$. The groups derived by removal of a hydrogen atom from a terminal carbon atom of unbranched alkanes form a subclass of normal alkyl ($n$-alkyl) groups $\\ce{H(CH2)_{n}}$. The groups $\\ce{RCH2}$, $\\ce{R2CH}$ ($\\ce{R \\neq H}$), and $\\ce{R3C}$ ($\\ce{R \\neq H}$) are primary, secondary and tertiary alkyl groups, respectively."@en ;
+    skos:inScheme goldbook: ;
+    skos:prefLabel "alkyl groups"@en ;
+    skos:topConceptOf goldbook: ;
+    prov:hadPrimarySource <https://doi.org/10.1351/goldbook.A00228> ;
+.

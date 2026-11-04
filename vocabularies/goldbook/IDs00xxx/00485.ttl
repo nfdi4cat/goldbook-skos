@@ -1,0 +1,23 @@
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX goldbook: <https://w3id.org/goldbook/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+goldbook:00485
+    a skos:Concept ;
+    dcterms:created "2026-11-04"^^xsd:date ;
+    dcterms:identifier "00485"^^xsd:token ;
+    dcterms:license <https://creativecommons.org/licenses/by-sa/4.0/> ;
+    dcterms:modified "2026-11-04"^^xsd:date ;
+    dcterms:provenance <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs00xxx/00485.ttl> ;
+    dcterms:rightsHolder "International Union of Pure and Applied Chemistry (IUPAC)" ;
+    rdfs:seeAlso <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs00xxx/00485.ttl> ;
+    skos:altLabel "deracemization"@en ;
+    skos:definition "The conversion of a racemate into a pure enantiomer or into a mixture in which one enantiomer is present in excess, or of a diastereoisomeric mixture into a single diastereoisomer or into a mixture in which one diastereoisomer predominates. This is sometimes called deracemization. If the two enantiomers of a chiral substrate A are freely interconvertible and if an equal amount or excess of a non-racemizing second enantiomerically pure chemical species, say ($R$)-B, is added to a solution of racemic A, then the resulting equilibrium mixture of adducts A·B will, in general, contain unequal amounts of the diastereoisomers ($R$)-A$\\cdot$($R$)-B and ($S$)-A$\\cdot$($R$)-B. The result of this equilibration is called asymmetric transformation of the first kind. If, in such a system, the two diastereoisomeric adducts differ considerably in solubility so that only one of them, say ($R$)-A$\\cdot$($R$)-B, crystallizes from the solution, then the equilibration of diastereoisomers in solution and concurrent crystallization will continue so that all (or most) of the substrate A can be isolated as the crystalline diastereoisomer ($R$)-A$\\cdot$($R$)-B. Such a 'crystallization-induced asymmetric transformation' is called an asymmetric transformation of the second kind."@en ;
+    skos:inScheme goldbook: ;
+    skos:prefLabel "asymmetric transformation"@en ;
+    skos:topConceptOf goldbook: ;
+    prov:hadPrimarySource <https://doi.org/10.1351/goldbook.A00485> ;
+.

@@ -1,0 +1,22 @@
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX goldbook: <https://w3id.org/goldbook/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+goldbook:06990
+    a skos:Concept ;
+    dcterms:created "2026-11-04"^^xsd:date ;
+    dcterms:identifier "06990"^^xsd:token ;
+    dcterms:license <https://creativecommons.org/licenses/by-sa/4.0/> ;
+    dcterms:modified "2026-11-04"^^xsd:date ;
+    dcterms:provenance <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs06xxx/06990.ttl> ;
+    dcterms:rightsHolder "International Union of Pure and Applied Chemistry (IUPAC)" ;
+    rdfs:seeAlso <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs06xxx/06990.ttl> ;
+    skos:definition "In trigonal bipyramidal structures with a five-coordinate central atom, the stabilization achieved through a ligand changing its position from equatorial to apical (axial). The apicophilicity of an atom or a group is evaluated by either the energy difference between the stereoisomers (permutational isomers) containing the ligand in apical and equatorial positions or the energy barrier to permutational isomerization (see also Berry pseudorotation). In general, the greater the electronegativity and the stronger the $\\ce{\\uppi\\!\\mbox{-}electron}$-withdrawing properties of a ligand (as for $\\ce{Cl}$, $\\ce{F}$, $\\ce{CN}$), the higher is its apicophilicity. The notion of apicophilicity has been extended to four-coordinate bisphenoidal and three-coordinate T-shaped structures, which can be viewed as trigonal bipyramidal species where, respectively, one or two vertices are occupied by phantom ligands (lone electron pairs)."@en ;
+    skos:inScheme goldbook: ;
+    skos:prefLabel "apicophilicity"@en ;
+    skos:topConceptOf goldbook: ;
+    prov:hadPrimarySource <https://doi.org/10.1351/goldbook.AT06990> ;
+.

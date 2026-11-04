@@ -1,0 +1,22 @@
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX goldbook: <https://w3id.org/goldbook/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+goldbook:00266
+    a skos:Concept ;
+    dcterms:created "2026-11-04"^^xsd:date ;
+    dcterms:identifier "00266"^^xsd:token ;
+    dcterms:license <https://creativecommons.org/licenses/by-sa/4.0/> ;
+    dcterms:modified "2026-11-04"^^xsd:date ;
+    dcterms:provenance <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs00xxx/00266.ttl> ;
+    dcterms:rightsHolder "International Union of Pure and Applied Chemistry (IUPAC)" ;
+    rdfs:seeAlso <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs00xxx/00266.ttl> ;
+    skos:definition "Derivatives of oxoacids $\\ce{R_{k}E(=O)_{l}(OH)_{m}}\\ (l \\neq 0)$ in which an acidic hydroxy group has been replaced by an amino or substituted amino group. Chalcogen replacement analogues are called thio-, seleno- and telluro-amides. Compounds having one, two or three acyl groups on a given nitrogen are generically included and may be designated as primary, secondary and tertiary amides, respectively, e.g.  benzamide, N,N-dimethylmethanesulfonamide,  secondary amides (see imides),  tertiary amides,  phenylphosphonamidic acid.Notes:Amides with $\\ce{NH2}$, $\\ce{NHR}$ and $\\ce{NR2}$ groups should not be distinguished by means of the terms primary, secondary and tertiary.Derivatives of certain acidic compounds $\\ce{R_{n}E(OH)_{m}}$, where $\\ce{E}$ is not carbon (e.g. sulfenic acids, $\\ce{RSOH}$, phosphinous acids, $\\ce{R2POH)}$, having the structure $\\ce{R_{n}E(NR2)_{m}}$ may be named as amides but do not belong to the class amides proper, e.g. $\\ce{CH3CH2SNH2}$ ethanesulfenamide or ethylsulfanylamine.The term applies also to metal derivatives of ammonia and amines, in which a cation replaces a hydrogen atom on nitrogen. Such compounds are also called azanides, e.g.  lithium diisopropylamide, synonym lithium diisopropylazanide.See also: carboxamides, lactams, peptides, phosphoramides, sulfonamides"@en ;
+    skos:inScheme goldbook: ;
+    skos:prefLabel "amides"@en ;
+    skos:topConceptOf goldbook: ;
+    prov:hadPrimarySource <https://doi.org/10.1351/goldbook.A00266> ;
+.
