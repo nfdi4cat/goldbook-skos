@@ -1,3 +1,4 @@
+import json
 import shutil
 from pathlib import Path
 
@@ -62,3 +63,21 @@ def test_failing_rule_stops_import_naming_record_and_field(tmp_path, capsys, mon
     err = capsys.readouterr().err
     assert "'definition'" in err
     assert "16268" in err  # first record in file name order
+
+
+def test_index_value_becomes_collection_with_member(tmp_path):
+    src = tmp_path / "json"
+    src.mkdir()
+    term = json.loads((FIXTURES / "C01082.json").read_text(encoding="utf-8"))
+    term["term"]["index"] = "quantity"
+    (src / "C01082.json").write_text(json.dumps(term), encoding="utf-8")
+    out = tmp_path / "goldbook.xlsx"
+    assert main([str(src), "--config", str(REPO / "idranges.toml"), "--output", str(out)]) == 0
+    config.load_config(config_file=REPO / "idranges.toml")
+    graph = excel_to_rdf_v1(
+        out, output_type="graph", vocab_config=config.IDRANGES.vocabs["goldbook"]
+    )
+    quantities = URIRef("https://w3id.org/goldbook/90001")
+    assert (quantities, RDF.type, SKOS.Collection) in graph
+    assert graph.value(quantities, SKOS.prefLabel) == Literal("quantities", lang="en")
+    assert set(graph.objects(quantities, SKOS.member)) == {URIRef("https://w3id.org/goldbook/01082")}

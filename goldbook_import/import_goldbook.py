@@ -17,7 +17,13 @@ from voc4cat.convert_v1 import (
 from voc4cat.models_v1 import ConceptV1, MappingV1
 
 from goldbook_model import TermIndex, load_terms
-from mapping import CONCEPT_RULES, MAPPING_RULES, MappingError, build_rows
+from mapping import (
+    CONCEPT_RULES,
+    MAPPING_RULES,
+    MappingError,
+    build_collections,
+    build_rows,
+)
 
 
 def parse_args(argv: list[str] | None) -> argparse.Namespace:
@@ -58,6 +64,7 @@ def main(argv: list[str] | None = None) -> int:
     index = TermIndex(records, str(vocab_config.permanent_iri_part))
     try:
         concepts = build_rows(ConceptV1, CONCEPT_RULES, records, index)
+        collections = build_collections(records, index)
         mappings = build_rows(MappingV1, MAPPING_RULES, records, index) if MAPPING_RULES else []
     except MappingError as exc:
         print(f"{exc}: {exc.__cause__!r}; no xlsx written.", file=sys.stderr)
@@ -70,7 +77,7 @@ def main(argv: list[str] | None = None) -> int:
     export_vocabulary_v1(
         config_to_concept_scheme_v1(vocab_config),
         concepts,
-        [],
+        collections,
         mappings,
         build_prefixes_v1(),
         args.output,
