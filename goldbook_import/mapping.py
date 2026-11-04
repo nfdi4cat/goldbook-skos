@@ -10,12 +10,22 @@ import re
 from collections.abc import Callable
 
 from pydantic import BaseModel, ValidationError
+from voc4cat.models_v1 import CollectionV1
 
 from goldbook_model import GoldbookTerm, TermIndex
 
 Rule = Callable[[GoldbookTerm, TermIndex], object]
 
 LABEL_FIELDS = ("synonym", "acronym", "initialism", "abbrev")
+
+# One skos:Collection per value of the Gold Book "index" field: value -> (id, label).
+# Ids 90000-99999 are reserved for entities this repository creates (idranges.toml).
+INDEX_COLLECTIONS = {
+    "quantity": ("90001", "quantities"),
+    "unit": ("90002", "units"),
+    "constant": ("90003", "constants"),
+    "prefix": ("90004", "prefixes"),
+}
 # Label fields start with their kind, e.g. "<em>synonyms</em>: ".
 LABEL_PREFIX = re.compile(r"^\s*<em>[^<]*</em>:\s*")
 
@@ -69,6 +79,14 @@ def definition(record: GoldbookTerm, index: TermIndex) -> str:
     return "\n".join(f"{n}. {text}" for n, text in enumerate(texts, 1))
 
 
+def index_collection(record: GoldbookTerm, index: TermIndex) -> str:
+    """IRI of the collection for the record's index value; KeyError for an unknown value."""
+    if record.index is None:
+        return ""
+    collection_id, _ = INDEX_COLLECTIONS[record.index]
+    return index.iri_base + collection_id
+
+
 def status_note(record: GoldbookTerm, index: TermIndex) -> str:
     return "" if record.status == "current" else f"Gold Book status: {record.status}"
 
@@ -85,9 +103,25 @@ CONCEPT_RULES: dict[str, Rule] = {
         "International Union of Pure and Applied Chemistry (IUPAC)"
     ),
     "editorial_note": status_note,
+    "member_of_collections": index_collection,
 }
 
 MAPPING_RULES: dict[str, Rule] = {}
+
+
+def build_collections(records: list[GoldbookTerm], index: TermIndex) -> list[CollectionV1]:
+    """One collection per index value that some record uses, in INDEX_COLLECTIONS order."""
+    used = {record.index for record in records}
+    return [
+        CollectionV1(
+            collection_iri=index.iri_base + collection_id,
+            language_code="en",
+            preferred_label=label,
+            definition=f"Gold Book terms indexed as {label}.",
+        )
+        for value, (collection_id, label) in INDEX_COLLECTIONS.items()
+        if value in used
+    ]
 
 
 def build_rows(

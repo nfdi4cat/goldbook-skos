@@ -5,7 +5,13 @@ import pytest
 from voc4cat.models_v1 import ConceptV1
 
 from goldbook_model import TermIndex, load_terms
-from mapping import CONCEPT_RULES, MappingError, build_rows, split_labels
+from mapping import (
+    CONCEPT_RULES,
+    MappingError,
+    build_collections,
+    build_rows,
+    split_labels,
+)
 
 FIXTURES = Path(__file__).parent / "fixtures"
 BASE = "https://w3id.org/goldbook/"
@@ -107,3 +113,36 @@ def test_invalid_rule_value_names_record_and_field():
     with pytest.raises(MappingError) as exc:
         build_rows(ConceptV1, rules, records, TermIndex(records, BASE))
     assert (exc.value.field, exc.value.record_id) == ("definition", records[0].id)
+
+
+def _with_index(records, values):
+    """Copies of the fixture records with the given index values, by code."""
+    return [r.model_copy(update={"index": values.get(r.code)}) for r in records]
+
+
+def test_concept_with_index_is_member_of_its_collection():
+    records, _ = load_terms(FIXTURES)
+    records = _with_index(records, {"C01082": "quantity", "A00034": "prefix"})
+    rows = build_rows(ConceptV1, CONCEPT_RULES, records, TermIndex(records, BASE))
+    members = {row.concept_iri.removeprefix(BASE): row.member_of_collections for row in rows}
+    assert members == {"16268": "", "00034": BASE + "90004", "01082": BASE + "90001", "08003": ""}
+
+
+def test_unknown_index_value_names_record_and_field():
+    records, _ = load_terms(FIXTURES)
+    records = _with_index(records, {"C01082": "ratio"})
+    with pytest.raises(MappingError) as exc:
+        build_rows(ConceptV1, CONCEPT_RULES, records, TermIndex(records, BASE))
+    assert (exc.value.field, exc.value.record_id) == ("member_of_collections", "01082")
+
+
+def test_one_collection_per_index_value_in_use():
+    records, _ = load_terms(FIXTURES)
+    records = _with_index(records, {"C01082": "quantity", "A00034": "unit", "16268": "unit"})
+    collections = build_collections(records, TermIndex(records, BASE))
+    assert [
+        (c.collection_iri, c.language_code, c.preferred_label, c.definition) for c in collections
+    ] == [
+        (BASE + "90001", "en", "quantities", "Gold Book terms indexed as quantities."),
+        (BASE + "90002", "en", "units", "Gold Book terms indexed as units."),
+    ]

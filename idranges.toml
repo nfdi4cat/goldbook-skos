@@ -127,6 +127,17 @@ name = "David Linke"
 orcid = "0000-0002-5898-1820"
 ror_id = "https://ror.org/029hg0311"
 
+# Ids 90000-99999 are reserved for entities this repository creates, such as
+# the collections built from the Gold Book "index" field; they cannot collide
+# with Gold Book ids.
+[[vocabs.goldbook.id_range]]
+first_id = 90000
+last_id = 99999
+gh_name = "dalito"
+name = "David Linke"
+orcid = "0000-0002-5898-1820"
+ror_id = "https://ror.org/029hg0311"
+
 # Continue with as many [[vocabs.goldbook.id_range]] sections as needed.
 
 # ==== Accepted Similarities ====
