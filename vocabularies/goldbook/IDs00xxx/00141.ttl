@@ -1,0 +1,22 @@
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX goldbook: <https://w3id.org/goldbook/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+goldbook:00141
+    a skos:Concept ;
+    dcterms:created "2026-11-04"^^xsd:date ;
+    dcterms:identifier "00141"^^xsd:token ;
+    dcterms:license <https://creativecommons.org/licenses/by-sa/4.0/> ;
+    dcterms:modified "2026-11-04"^^xsd:date ;
+    dcterms:provenance <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs00xxx/00141.ttl> ;
+    dcterms:rightsHolder "International Union of Pure and Applied Chemistry (IUPAC)" ;
+    rdfs:seeAlso <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs00xxx/00141.ttl> ;
+    skos:definition "This word is used with various different meanings, and when it is used it should be defined. In thermodynamics 'adiabatic' is used in a macroscopic sense to refer to a process occurring in a thermally insulated system, so that there is no flow of heat to or from the surroundings. In reaction dynamics, the word has been used in a microscopic sense, with a range of meanings which have only a tenuous relationship to the thermodynamic meaning or the etymology. Whereas the thermodynamic meaning relates to conditions imposed on a process by an observer, the microscopic meaning relates to conditions under which the process occurs naturally. The microscopic meanings, as used in reaction dynamics, all have in common the feature that quantum states remain unchanged during the course of reaction. Different quantum states may be referred to: A reaction that is not adiabatic is referred to as nonadiabatic or diabatic, and some workers make a distinction between the two words.A reaction in which there is no change of electronic state or multiplicity has been called adiabatic, or more specifically electronically adiabatic. A reaction in which there is no change of vibrational state during the course of reaction has been said to be vibrationally adiabatic. More loosely, the expression has been applied to a process in which excess vibrational energy in the reactants appears as vibrational energy in the products, or in which ground-state vibration in the reactants leads to ground state vibration in the products.A reaction in which excess rotational energy in the reactants appears as rotational energy in the products, or in which ground-state rotation in the reactants leads to ground-state rotation in the products, has been referred to as rotationally adiabatic.In the Rice–Ramsperger–Kassel–Marcus (RRKM) theory of unimolecular reactions, a degree of freedom whose quantum number is more or less preserved during energization and subsequent reaction has been called 'adiabatic'; the word 'inactive' has also been applied to it."@en ;
+    skos:inScheme goldbook: ;
+    skos:prefLabel "adiabatic"@en ;
+    skos:topConceptOf goldbook: ;
+    prov:hadPrimarySource <https://doi.org/10.1351/goldbook.A00141> ;
+.

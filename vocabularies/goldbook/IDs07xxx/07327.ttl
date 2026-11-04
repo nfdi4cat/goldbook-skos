@@ -1,0 +1,22 @@
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX goldbook: <https://w3id.org/goldbook/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+goldbook:07327
+    a skos:Concept ;
+    dcterms:created "2026-11-04"^^xsd:date ;
+    dcterms:identifier "07327"^^xsd:token ;
+    dcterms:license <https://creativecommons.org/licenses/by-sa/4.0/> ;
+    dcterms:modified "2026-11-04"^^xsd:date ;
+    dcterms:provenance <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs07xxx/07327.ttl> ;
+    dcterms:rightsHolder "International Union of Pure and Applied Chemistry (IUPAC)" ;
+    rdfs:seeAlso <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs07xxx/07327.ttl> ;
+    skos:definition "Inter- and intramolecular photochemical processes involving the addition of a $\\ce{C–C}$ double (or triple) bond (i) to the 1,2-positions of an arene in which case it is called an ortho photocycloaddition, with formation of a benzocyclobutene (or a benzocyclobutadiene) derivative, (ii) to the 1,3-positions of an arene in which case it is called a meta photocycloaddition, with formation of tricyclo[3.3.0.02,8]oct-3-ene (or octa-3,6-diene) derivatives, or (iii) to the 1,4-positions of an arene in which case it is called a para photocycloaddition, with formation of bicyclo[2,2,2]oct-2-ene (or octa-2,5-diene) derivatives."@en ;
+    skos:inScheme goldbook: ;
+    skos:prefLabel "aromatic photocycloaddition"@en ;
+    skos:topConceptOf goldbook: ;
+    prov:hadPrimarySource <https://doi.org/10.1351/goldbook.AT07327> ;
+.

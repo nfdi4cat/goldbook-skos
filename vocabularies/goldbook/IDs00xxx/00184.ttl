@@ -1,0 +1,22 @@
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX goldbook: <https://w3id.org/goldbook/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+goldbook:00184
+    a skos:Concept ;
+    dcterms:created "2026-11-04"^^xsd:date ;
+    dcterms:identifier "00184"^^xsd:token ;
+    dcterms:license <https://creativecommons.org/licenses/by-sa/4.0/> ;
+    dcterms:modified "2026-11-04"^^xsd:date ;
+    dcterms:provenance <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs00xxx/00184.ttl> ;
+    dcterms:rightsHolder "International Union of Pure and Applied Chemistry (IUPAC)" ;
+    rdfs:seeAlso <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs00xxx/00184.ttl> ;
+    skos:definition "Certain materials used as catalysts or supports consist of spheroids smaller than \\(10\\ \\rm{nm}\\) in diameter, cemented into larger entities. A primary particle should be defined as the smallest discrete identifiable entity and the method of identification should be mentioned (e.g. transmission electron microscopy, scanning electron microscopy). An assemblage of such primary particles exhibiting an identifiable collective behaviour (e.g. chemical nature of the aggregated primary particles, texture of the aggregate, resistance to mechanical separation upon grinding) constitutes an aggregate. When describing the aggregates the criterion of identification should be mentioned. Strongly bonded aggregates are called agglomerates."@en ;
+    skos:inScheme goldbook: ;
+    skos:prefLabel "aggregate"@en ;
+    skos:topConceptOf goldbook: ;
+    prov:hadPrimarySource <https://doi.org/10.1351/goldbook.A00184> ;
+.

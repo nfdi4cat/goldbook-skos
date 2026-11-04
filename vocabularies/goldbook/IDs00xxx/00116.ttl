@@ -1,0 +1,22 @@
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX goldbook: <https://w3id.org/goldbook/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+goldbook:00116
+    a skos:Concept ;
+    dcterms:created "2026-11-04"^^xsd:date ;
+    dcterms:identifier "00116"^^xsd:token ;
+    dcterms:license <https://creativecommons.org/licenses/by-sa/4.0/> ;
+    dcterms:modified "2026-11-04"^^xsd:date ;
+    dcterms:provenance <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs00xxx/00116.ttl> ;
+    dcterms:rightsHolder "International Union of Pure and Applied Chemistry (IUPAC)" ;
+    rdfs:seeAlso <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs00xxx/00116.ttl> ;
+    skos:definition "The activity coefficient \\(f_{\\rm{B}}\\) of a substance B in a liquid or solid mixture containing mole fractions \\(x_{\\rm{B}}\\), \\(x_{\\rm{C}}\\), ... of the substances B, C, ... is a dimensionless quantity defined in terms of the chemical potential \\(\\mu _{\\rm{B}}\\) of B in the mixture by: \\[R T \\ln (x_{\\ce{B}} f_{\\ce{B}}) = \\mu_{\\ce{B}}({\\ce{cd}},T,P,x) - \\mu_{\\ce{B}}^{\\ast}({\\ce{cd}},T,p)\\] where \\(x\\) denotes the set of mole fractions \\(x_{\\rm{B}}\\), \\(x_{\\rm{C}}\\), ... . The activity coefficient \\(\\gamma _{\\rm{B}}\\) of a solute B in a solution (especially a dilute liquid solution) containing molalities \\(m_{\\rm{B}}\\), \\(m_{\\rm{C}}\\), ... of solutes B, C, ... in a solvent A is a dimensionless quantity defined in terms of the chemical potential \\(\\mu _{\\rm{B}}\\) by: \\[R\\ T\\ \\ln \\left(\\frac{m_{\\rm{B}}\\ \\gamma _{\\rm{B}}}{m^{\\ominus}}\\right)=\\mu _{\\rm{B}}- \\left\\{\\mu _{\\rm{B}}- R\\ T\\ \\ln \\left(\\frac{m_{\\rm{B}}}{m^{\\ominus }}\\right)\\right\\}^{\\infty }\\]"@en ;
+    skos:inScheme goldbook: ;
+    skos:prefLabel "activity coefficient"@en ;
+    skos:topConceptOf goldbook: ;
+    prov:hadPrimarySource <https://doi.org/10.1351/goldbook.A00116> ;
+.

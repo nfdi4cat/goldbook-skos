@@ -1,0 +1,27 @@
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX goldbook: <https://w3id.org/goldbook/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+goldbook:14418
+    a skos:Concept ;
+    dcterms:created "2026-11-04"^^xsd:date ;
+    dcterms:identifier "14418"^^xsd:token ;
+    dcterms:license <https://creativecommons.org/licenses/by-sa/4.0/> ;
+    dcterms:modified "2026-11-04"^^xsd:date ;
+    dcterms:provenance <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs14xxx/14418.ttl> ;
+    dcterms:rightsHolder "International Union of Pure and Applied Chemistry (IUPAC)" ;
+    rdfs:seeAlso <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs14xxx/14418.ttl> ;
+    skos:altLabel
+        "acclimatation"@en ,
+        "acclimation"@en ;
+    skos:definition """Processes, including selection and adaptation, by which a population of microorganisms develops the ability to degrade a substance, or develops a tolerance to it.
+In experimental systems, allowing an organism to adjust to its environment prior to undertaking a study.
+Modification of biological processes or structures in the maintenance of homeostasis in response to change in some environmental quality such as temperature, salinity, light, radiation, or toxicant concentration. Note: It is an expression of phenotypic plasticity of individuals in response to a sublethal change in some environmental factor."""@en ;
+    skos:inScheme goldbook: ;
+    skos:prefLabel "acclimatisation"@en ;
+    skos:topConceptOf goldbook: ;
+    prov:hadPrimarySource <https://doi.org/10.1351/goldbook.14418> ;
+.

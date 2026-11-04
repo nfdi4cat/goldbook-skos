@@ -1,0 +1,22 @@
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX goldbook: <https://w3id.org/goldbook/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+goldbook:00133
+    a skos:Concept ;
+    dcterms:created "2026-11-04"^^xsd:date ;
+    dcterms:identifier "00133"^^xsd:token ;
+    dcterms:license <https://creativecommons.org/licenses/by-sa/4.0/> ;
+    dcterms:modified "2026-11-04"^^xsd:date ;
+    dcterms:provenance <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs00xxx/00133.ttl> ;
+    dcterms:rightsHolder "International Union of Pure and Applied Chemistry (IUPAC)" ;
+    rdfs:seeAlso <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs00xxx/00133.ttl> ;
+    skos:definition "A chemical reaction of two or more reacting molecular entities, resulting in a single reaction product containing all atoms of all components, with formation of two chemical bonds and a net reduction in bond multiplicity in at least one of the reactants. The reverse process is called an elimination reaction. The addition may occur at only one site (α-addition, 1/1/addition), at two adjacent sites (1/2/addition) or at two non-adjacent sites (1/3/- or 1/4/addition, etc.). For example:   If the reagent or the source of the addends of an addition are not specified, then it is called an addition transformation."@en ;
+    skos:inScheme goldbook: ;
+    skos:prefLabel "addition reaction"@en ;
+    skos:topConceptOf goldbook: ;
+    prov:hadPrimarySource <https://doi.org/10.1351/goldbook.A00133> ;
+.

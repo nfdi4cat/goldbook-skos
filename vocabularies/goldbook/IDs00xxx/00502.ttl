@@ -1,0 +1,22 @@
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX goldbook: <https://w3id.org/goldbook/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+goldbook:00502
+    a skos:Concept ;
+    dcterms:created "2026-11-04"^^xsd:date ;
+    dcterms:identifier "00502"^^xsd:token ;
+    dcterms:license <https://creativecommons.org/licenses/by-sa/4.0/> ;
+    dcterms:modified "2026-11-04"^^xsd:date ;
+    dcterms:provenance <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs00xxx/00502.ttl> ;
+    dcterms:rightsHolder "International Union of Pure and Applied Chemistry (IUPAC)" ;
+    rdfs:seeAlso <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs00xxx/00502.ttl> ;
+    skos:definition "Atomic and ionic spectral lines originate from specified electronic transitions between energy levels of atoms and ions, respectively. In the past it has been common usage to denote atomic lines as arc lines and ionic lines as spark lines. This usage is now considered to be incorrect. The correct way to indicate that lines are due to atomic or ionic transitions is: Element symbol I wavelength, e.g., Cu I \\(324.7\\ \\rm{nm}\\); and Element symbol II wavelength, e.g., Cu II \\(213.6\\ \\rm{nm}\\). Similarly for higher states of ionization, the type of line is represented by III, IV, etc."@en ;
+    skos:inScheme goldbook: ;
+    skos:prefLabel "atomic spectral lines"@en ;
+    skos:topConceptOf goldbook: ;
+    prov:hadPrimarySource <https://doi.org/10.1351/goldbook.A00502> ;
+.

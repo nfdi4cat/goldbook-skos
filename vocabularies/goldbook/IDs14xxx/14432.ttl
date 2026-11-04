@@ -1,0 +1,23 @@
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX goldbook: <https://w3id.org/goldbook/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+goldbook:14432
+    a skos:Concept ;
+    dcterms:created "2026-11-04"^^xsd:date ;
+    dcterms:identifier "14432"^^xsd:token ;
+    dcterms:license <https://creativecommons.org/licenses/by-sa/4.0/> ;
+    dcterms:modified "2026-11-04"^^xsd:date ;
+    dcterms:provenance <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs14xxx/14432.ttl> ;
+    dcterms:rightsHolder "International Union of Pure and Applied Chemistry (IUPAC)" ;
+    rdfs:seeAlso <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs14xxx/14432.ttl> ;
+    skos:altLabel "APTI"@en ;
+    skos:definition "Empirical index used to assess the tolerance of individual plants to contaminated air. The numerical value of \\(T_{\\rm{I}}\\) is obtained by combining various quantities according to the recipe \\([A (T + P) + R]/10\\), where \\(A\\) is the mass of ascorbic acid divided by the dry mass of a leaf, expressed as \\(\\pu{mg/g}\\), \\(T\\) is the total mass of chlorophyll divided by the fresh mass, expressed as \\(\\pu{mg/g}\\), \\(P\\) is the pH of a leaf extract, and \\(R\\) is the mass of water in the leaf divided by the wet mass, expressed as percent."@en ;
+    skos:inScheme goldbook: ;
+    skos:prefLabel "air pollution tolerance index"@en ;
+    skos:topConceptOf goldbook: ;
+    prov:hadPrimarySource <https://doi.org/10.1351/goldbook.14432> ;
+.

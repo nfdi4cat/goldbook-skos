@@ -1,0 +1,25 @@
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX goldbook: <https://w3id.org/goldbook/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+goldbook:14421
+    a skos:Concept ;
+    dcterms:created "2026-11-04"^^xsd:date ;
+    dcterms:identifier "14421"^^xsd:token ;
+    dcterms:license <https://creativecommons.org/licenses/by-sa/4.0/> ;
+    dcterms:modified "2026-11-04"^^xsd:date ;
+    dcterms:provenance <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs14xxx/14421.ttl> ;
+    dcterms:rightsHolder "International Union of Pure and Applied Chemistry (IUPAC)" ;
+    rdfs:seeAlso <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs14xxx/14421.ttl> ;
+    skos:definition """Of short duration, in relation to exposure or effect; the effect usually shows a rapid onset.
+Note 1: In regulatory toxicology, 'acute' refers to studies where dosing is either single or limited to one day although the total study duration may extend to two weeks to permit appearance of toxicity in susceptible organ systems.
+Note 2: In aquatic ecotoxicology, exposure of the test organisms is typically continuous and of four days or less.
+In clinical medicine, sudden and severe, having a rapid onset."""@en ;
+    skos:inScheme goldbook: ;
+    skos:prefLabel "acute"@en ;
+    skos:topConceptOf goldbook: ;
+    prov:hadPrimarySource <https://doi.org/10.1351/goldbook.14421> ;
+.

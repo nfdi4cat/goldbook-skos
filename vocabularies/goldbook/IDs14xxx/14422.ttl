@@ -1,0 +1,23 @@
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX goldbook: <https://w3id.org/goldbook/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+goldbook:14422
+    a skos:Concept ;
+    dcterms:created "2026-11-04"^^xsd:date ;
+    dcterms:identifier "14422"^^xsd:token ;
+    dcterms:license <https://creativecommons.org/licenses/by-sa/4.0/> ;
+    dcterms:modified "2026-11-04"^^xsd:date ;
+    dcterms:provenance <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs14xxx/14422.ttl> ;
+    dcterms:rightsHolder "International Union of Pure and Applied Chemistry (IUPAC)" ;
+    rdfs:seeAlso <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs14xxx/14422.ttl> ;
+    skos:altLabel "ACR"@en ;
+    skos:definition "Numerical dimensionless quantity that is the ratio of an acute toxicity test result (e.g., \\(\\pu{LC_{50}}\\)) to a chronic toxicity test result (e.g., maximum acceptable toxicant concentration, MATC) where both are expressed in the same units (e.g., \\(\\pu{mg L-1}\\)). Ideally, the data are for the same chemical species."@en ;
+    skos:inScheme goldbook: ;
+    skos:prefLabel "acute-to-chronic toxicity ratio"@en ;
+    skos:topConceptOf goldbook: ;
+    prov:hadPrimarySource <https://doi.org/10.1351/goldbook.14422> ;
+.
