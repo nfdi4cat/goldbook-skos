@@ -111,3 +111,6 @@ _published/
 
 # Copies of submitted xlsx files kept by the local "just convert" recipe.
 _xlsx-backup/
+
+goldbook-download/gb1000/
+goldbook-download/goldbook-terms/
