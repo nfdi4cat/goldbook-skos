@@ -80,3 +80,30 @@ def test_failing_rule_names_record_and_field():
     with pytest.raises(MappingError) as exc:
         build_rows(ConceptV1, rules, records, TermIndex(records, BASE))
     assert (exc.value.field, exc.value.record_id) == ("definition", records[0].id)
+
+
+def test_alternate_labels_exclude_title_and_duplicates():
+    records, _ = load_terms(FIXTURES)
+    cip = next(r for r in records if r.code == "C01082").model_copy(
+        update={
+            "synonym": "<em>synonyms</em>: priority, CIP priority",
+            "abbrev": "<em>abbrev</em>: CIP",
+        }
+    )
+    rows = build_rows(ConceptV1, CONCEPT_RULES, [cip], TermIndex([cip], BASE))
+    assert rows[0].alternate_labels == "priority|CIP"
+
+
+def test_rule_for_unknown_field_is_rejected():
+    records, _ = load_terms(FIXTURES)
+    rules = {**CONCEPT_RULES, "parent_iri": lambda r, ix: "x"}
+    with pytest.raises(ValueError, match="parent_iri"):
+        build_rows(ConceptV1, rules, records, TermIndex(records, BASE))
+
+
+def test_invalid_rule_value_names_record_and_field():
+    records, _ = load_terms(FIXTURES)
+    rules = {**CONCEPT_RULES, "definition": lambda r, ix: None}
+    with pytest.raises(MappingError) as exc:
+        build_rows(ConceptV1, rules, records, TermIndex(records, BASE))
+    assert (exc.value.field, exc.value.record_id) == ("definition", records[0].id)

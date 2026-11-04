@@ -9,7 +9,7 @@ use; fields without a rule keep the model's default.
 import re
 from collections.abc import Callable
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ValidationError
 
 from goldbook_model import GoldbookTerm, TermIndex
 
@@ -52,11 +52,13 @@ def split_labels(raw: str | None) -> list[str]:
 
 
 def alternate_labels(record: GoldbookTerm, index: TermIndex) -> str:
-    labels = [
-        label
+    # SKOS requires prefLabel and altLabels to be disjoint; dict keeps first-seen order.
+    labels = {
+        label: None
         for field in LABEL_FIELDS
         for label in split_labels(getattr(record, field))
-    ]
+        if label != record.title
+    }
     return "|".join(labels)
 
 
@@ -95,6 +97,10 @@ def build_rows(
     index: TermIndex,
 ) -> list[BaseModel]:
     """One model row per record, with each field computed by its rule."""
+    # voc4cat models ignore unknown fields, so a misspelt rule key would be lost silently.
+    unknown = sorted(set(rules) - set(model.model_fields))
+    if unknown:
+        raise ValueError(f"rules for fields that {model.__name__} does not have: {unknown}")
     rows = []
     for record in records:
         values = {}
@@ -103,5 +109,8 @@ def build_rows(
                 values[field] = rule(record, index)
             except Exception as exc:
                 raise MappingError(record.id, field) from exc
-        rows.append(model(**values))
+        try:
+            rows.append(model(**values))
+        except ValidationError as exc:
+            raise MappingError(record.id, str(exc.errors()[0]["loc"][0])) from exc
     return rows
