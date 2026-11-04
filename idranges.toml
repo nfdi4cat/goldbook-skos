@@ -7,51 +7,50 @@ config_version = "v1.0"
 # Allow only a single vocabulary (default) or multiple vocabularies in the repository.
 single_vocab = true
 
-# ==== Configuration for vocabulary "vocab_example" ====
+# ==== Configuration for vocabulary "goldbook" ====
 
 # The name of the vocabulary is used as section name.
 # It should match the filename-stem of the vocabulary files.
-[vocabs.vocab_example]
+[vocabs.goldbook]
 # Length of integer IDs in vocabulary. IDs will be left-padded with zeros to specified length.
-id_length = 7
+id_length = 5
 # permanent part of IRIs defined in the vocabulary (used to construct concept IRIs)
-permanent_iri_part = "https://example.org/test/"
+permanent_iri_part = "https://w3id.org/goldbook/"
 
 # ==== ConceptScheme Metadata ====
 # Fields marked MANDATORY must be filled before use.
 
 # MANDATORY: IRI for the vocabulary (skos:ConceptScheme)
-vocabulary_iri = "https://example.org/test/"
+vocabulary_iri = "https://w3id.org/goldbook/"
 
 # Optional: Registered (or preferred) prefix for this vocabulary
-prefix = "ex"
+prefix = "goldbook"
 
 # MANDATORY: Title of the vocabulary
-title = "My Vocabulary"
+title = "IUPAC Gold Book (SKOS draft)"
 
 # MANDATORY: General description of the vocabulary
-description = "Description of the vocabulary"
+description = "Draft SKOS version of the IUPAC Compendium of Chemical Terminology (Gold Book), generated from the Gold Book JSON for feedback. IRIs and content are provisional."
 
 # MANDATORY: Date of creation (ISO-8601 format: YYYY-MM-DD)
-created_date = "2025-01-01"
+created_date = "2026-11-04"
 
 # MANDATORY: Creator(s) - multi-line text, each line: "<name> <orcid-URL or ror-URL>"
 creator = """
-Alice Smith https://orcid.org/0000-0001-2345-6788
-Sofia Garcia https://orcid.org/0000-0001-2345-6789
+David Linke https://orcid.org/0000-0002-5898-1820
 """
 
 # MANDATORY: Publisher - single line of text: "<name> <orcid-URL or ror-URL>"
 # The vp4cat profile requires exactly one publisher (requirement 2.1.6).
 publisher = """
-Example Organization https://ror.org/04fa4r544
+International Union of Pure and Applied Chemistry https://ror.org/03ne2zw20
 """
 
 # Optional: Custodian(s) - multi-line text, each line: "<name> <orcid-URL or ror-URL>"
 # Becomes dcat:contactPoint. A line carrying a URL yields an IRI, plain text
 # yields a literal.
 custodian = """
-Sofia Garcia https://orcid.org/0000-0001-2345-6789
+David Linke https://orcid.org/0000-0002-5898-1820
 """
 
 # Optional: DOI or other catalogue persistent identifier
@@ -68,7 +67,7 @@ Sofia Garcia https://orcid.org/0000-0001-2345-6789
 
 # MANDATORY: URL of repository or online vocabulary editor
 # repository = "https://github.com/YOUR-ORG/YOUR-REPO"
-repository = "https://github.com/nfdi4cat/voc4cat-template"
+repository = "https://github.com/nfdi4cat/goldbook-skos"
 
 # Optional: Jinja template for provenance URLs (git blame links)
 # Available template variables: entity_id, vocab_name, version, github_repo,
@@ -97,14 +96,14 @@ repository = "https://github.com/nfdi4cat/voc4cat-template"
 
 # ==== Checks Configuration ====
 # Section to configure checks (useful in CI pipeline)
-[vocabs.vocab_example.checks]
+[vocabs.goldbook.checks]
 # Deleting allowed (relevant in CI-pipeline)
 allow_delete = false
 
 # ==== Prefix Map ====
 # Namespace prefix mappings used for CURIE expansion/compression
-[vocabs.vocab_example.prefix_map]
-ex = "https://example.org/"
+[vocabs.goldbook.prefix_map]
+goldbook = "https://w3id.org/goldbook/"
 
 # ==== ID Ranges ====
 # Section of IDranges for coordinating the allocation of numeric ID ranges to
@@ -120,22 +119,15 @@ ex = "https://example.org/"
 # Note: Contributors are auto-derived from ID range usage. Anyone who used IDs
 # from their reserved range will be listed as dct:contributor in the output.
 
-[[vocabs.vocab_example.id_range]]
+[[vocabs.goldbook.id_range]]
 first_id = 1
-last_id = 10
-gh_name = "sofia-garcia"
-name = "Sofia Garcia"
-orcid = "0000-0001-2345-6789"
-ror_id = "https://ror.org/04fa4r544"
+last_id = 16270
+gh_name = "dalito"
+name = "David Linke"
+orcid = "0000-0002-5898-1820"
+ror_id = "https://ror.org/029hg0311"
 
-[[vocabs.vocab_example.id_range]]
-first_id = 11
-last_id = 20
-gh_name = "another-contributor"
-orcid = ""
-ror_id = ""
-
-# Continue with as many [[vocabs.vocab_example.id_range]] sections as needed.
+# Continue with as many [[vocabs.goldbook.id_range]] sections as needed.
 
 # ==== Accepted Similarities ====
 # Concept pairs that voc-assistant reports and that the vocabulary
@@ -145,8 +137,8 @@ ror_id = ""
 # vocabulary, or matching no reported pair, is reported as unused, so the
 # list does not go stale unnoticed.
 #
-# [[vocabs.vocab_example.accepted_similarity]]
-# concepts = ["ex:test/0000001", "ex:test/0000002"]
+# [[vocabs.goldbook.accepted_similarity]]
+# concepts = ["goldbook:00001", "goldbook:00002"]
 # reason = "Homonyms in different facets; decided in issue #42."
 
 # More vocabularies can be configured by adding sections with appropriate name.
