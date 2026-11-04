@@ -127,6 +127,16 @@ duplicates-new:
 # Run all steps as in gh-actions: check xlsx, convert to SKOS, screen for duplicates, build docs, re-build xlsx
 all: check convert duplicates-new docs xlsx
 
+# Import Gold Book JSON files from a directory into inbox-excel-vocabs/goldbook.xlsx
+[group('goldbook')]
+goldbook-import json_dir:
+  uv run --project goldbook_import python goldbook_import/import_goldbook.py "{{json_dir}}"
+
+# Run the tests of the Gold Book import
+[group('goldbook')]
+test-import:
+  uv run --project goldbook_import pytest goldbook_import
+
 # The checks that guard a pull request are advisory when run locally and fatal
 # in gh-actions. Uncomment to get the pipeline's strict behaviour here, e.g. to
 # see whether the IDs you minted are inside the id_range that idranges.toml
