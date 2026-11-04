@@ -72,19 +72,28 @@ def load_terms(directory: Path) -> tuple[list[GoldbookTerm], list[LoadError]]:
     """Validate every *.json file in directory, in file name order.
 
     Returns the valid records and one LoadError per file that is empty, not
-    JSON or does not fit the model.
+    JSON, does not fit the model, or repeats the id of an earlier file.
     """
     records: list[GoldbookTerm] = []
     errors: list[LoadError] = []
+    file_of_id: dict[str, Path] = {}
     for path in sorted(directory.glob("*.json")):
         data = path.read_bytes()
         if not data.strip():
             errors.append(LoadError(path, "empty file"))
             continue
         try:
-            records.append(GoldbookFile.model_validate_json(data).term)
+            record = GoldbookFile.model_validate_json(data).term
         except ValidationError as exc:
             errors.append(LoadError(path, str(exc)))
+            continue
+        if record.id in file_of_id:
+            errors.append(
+                LoadError(path, f"id {record.id} also in {file_of_id[record.id].name}")
+            )
+            continue
+        file_of_id[record.id] = path
+        records.append(record)
     return records, errors
 
 

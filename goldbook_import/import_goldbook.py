@@ -38,6 +38,9 @@ def main(argv: list[str] | None = None) -> int:
     if not args.json_dir.is_dir():
         print(f"Not a directory: {args.json_dir}", file=sys.stderr)
         return 2
+    if not any(args.json_dir.glob("*.json")):
+        print(f"No *.json files in {args.json_dir}; no xlsx written.", file=sys.stderr)
+        return 2
     vocab_name = args.output.stem
     config.load_config(config_file=args.config)
     if vocab_name not in config.IDRANGES.vocabs:
@@ -63,6 +66,7 @@ def main(argv: list[str] | None = None) -> int:
     # Same converter selection as voc4cat's rdf_to_excel_v1, so the
     # vocabulary's own prefix appears in the Prefixes sheet.
     config.curies_converter = config.CURIES_CONVERTER_MAP[vocab_name]
+    args.output.parent.mkdir(parents=True, exist_ok=True)
     export_vocabulary_v1(
         config_to_concept_scheme_v1(vocab_config),
         concepts,

@@ -37,3 +37,12 @@ def test_term_index_looks_up_by_id_and_code_and_builds_iri():
     assert index.by_code["C01082"].id == "01082"
     assert index.by_id["01082"].code == "C01082"
     assert index.iri(index.by_id["01082"]) == "https://w3id.org/goldbook/01082"
+
+
+def test_load_terms_reports_files_with_the_same_id(tmp_path):
+    shutil.copy(FIXTURES / "C01082.json", tmp_path)
+    shutil.copy(FIXTURES / "C01082.json", tmp_path / "dup.json")
+    records, errors = load_terms(tmp_path)
+    assert [e.path.name for e in errors] == ["dup.json"]
+    assert "01082" in errors[0].message
+    assert "C01082.json" in errors[0].message

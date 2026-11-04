@@ -12,6 +12,8 @@ just goldbook-import goldbook-download/gb1000   # writes inbox-excel-vocabs/gold
 just test-import                                 # runs the tests
 ```
 
+just runs recipes in the repository root, so the directory given to `goldbook-import` is relative to the repository root, wherever just is called from.
+
 The import validates every file first and writes nothing if any file is invalid or a mapping rule fails; the error names the file or the Gold Book id.
 
 ## Changing the mapping

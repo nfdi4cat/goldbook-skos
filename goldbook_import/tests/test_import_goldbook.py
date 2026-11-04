@@ -6,6 +6,7 @@ from voc4cat import config
 from voc4cat.convert_v1 import excel_to_rdf_v1
 
 from import_goldbook import main
+from mapping import CONCEPT_RULES
 
 REPO = Path(__file__).parents[2]
 FIXTURES = Path(__file__).parent / "fixtures"
@@ -36,3 +37,28 @@ def test_invalid_record_fails_without_writing_xlsx(tmp_path, capsys):
     assert main([str(src), "--config", str(REPO / "idranges.toml"), "--output", str(out)]) == 1
     assert not out.exists()
     assert "page.json" in capsys.readouterr().err
+
+
+def test_directory_without_json_files_fails_without_writing_xlsx(tmp_path, capsys):
+    src = tmp_path / "json"
+    src.mkdir()
+    out = tmp_path / "goldbook.xlsx"
+    assert main([str(src), "--config", str(REPO / "idranges.toml"), "--output", str(out)]) == 2
+    assert not out.exists()
+    assert "No *.json files" in capsys.readouterr().err
+
+
+def test_missing_output_directory_is_created(tmp_path):
+    out = tmp_path / "new" / "dir" / "goldbook.xlsx"
+    assert main([str(FIXTURES), "--config", str(REPO / "idranges.toml"), "--output", str(out)]) == 0
+    assert out.exists()
+
+
+def test_failing_rule_stops_import_naming_record_and_field(tmp_path, capsys, monkeypatch):
+    monkeypatch.setitem(CONCEPT_RULES, "definition", lambda r, ix: 1 / 0)
+    out = tmp_path / "goldbook.xlsx"
+    assert main([str(FIXTURES), "--config", str(REPO / "idranges.toml"), "--output", str(out)]) == 1
+    assert not out.exists()
+    err = capsys.readouterr().err
+    assert "'definition'" in err
+    assert "16268" in err  # first record in file name order
