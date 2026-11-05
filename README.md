@@ -5,21 +5,29 @@ Repository for the goldbook hacking section in [Ontologies4Chem](https://nfdi4ch
 Sources of goldbooks data:
  * https://goldbook.iupac.org/pages/api/ (API access currently Cloudflare blocked)
 
-Added record checks to scripts/check_json_files.py. Both download folders pass:
+## Running the import
 
-- goldbook-download/gb1000: 1000 files checked, 0 invalid.
-- goldbook-download/goldbook-terms: 14149 files checked, 0 invalid.
+The first import and every later update work the same way: the import rebuilds a complete xlsx from all IUPAC JSON files, and a pull request with that xlsx updates the vocabulary.
 
-For each .json file the script checks that:
-1. it is not empty and parses as JSON;
-2. the top level is an object with exactly one key, term;
-3. term is an object;
-4. term has all 13 fields that every record has today (id, title, longtitle, doi, code, status,
-   definitions, altoutputs, citation, license, collection, disclaimer, accessed);
-5. term.code matches the file name, either `<code>.json` or `goldbook_term_<code>.json`.
+Requirements: [uv](https://docs.astral.sh/uv/), [just](https://github.com/casey/just), and for the local checks voc4cat-tool (`just setup`).
 
-Each bad file is reported on its own line with the reason, and the script exits with 1 if any file
-fails.
+1. Start a branch from an up-to-date `main`:
+   `git switch main`, `git pull`, `git switch -c <branch>`.
+2. Build the xlsx: `just goldbook-import goldbook-download/gb1000`.
+   The directory is relative to the repository root.
+   This writes `inbox-excel-vocabs/goldbook.xlsx`; an invalid file, a duplicate id or a failing mapping rule stops the import and nothing is written.
+3. Optional, to see the result locally: `just check convert docs` writes `outbox/goldbook.ttl` and the HTML documentation `outbox/goldbook/index.html`; `just clean` removes the generated files.
+4. Commit only `inbox-excel-vocabs/goldbook.xlsx`, push the branch and open a pull request.
+5. The CI converts the xlsx and replaces the branch's commit with a "CI: vocabulary update" commit that holds the turtle files in `vocabularies/goldbook/` and no xlsx.
+   Do not push the local branch again afterwards; it still holds the xlsx commit.
+6. GitHub holds the second CI run until a maintainer clicks "Approve and run" (see [README_TEMPLATE.md](README_TEMPLATE.md#why-a-second-workflow-run-has-to-be-approved)). Approve it, then merge.
+7. After the merge: `git switch main`, `git pull`, `git branch -D <branch>`.
+
+What an update changes:
+- Concepts whose content is unchanged produce no diff; only changed and new concepts get a new `dcterms:modified` date.
+- A concept missing from the new download counts as a deletion, which the CI rejects (`allow_delete = false` in `idranges.toml`).
+- If nothing changed, the CI closes the pull request.
+- New ids must lie in an `id_range` of the pull request's author in `idranges.toml` on `main`.
 
 ## Mapping of Gold Book JSON to SKOS
 
@@ -62,3 +70,9 @@ All labels and definitions get the language tag `@en`.
 | (none) | `dcterms:rightsHolder` | constant "International Union of Pure and Applied Chemistry (IUPAC)" |
 
 voc4cat tool adds further triples to every concept that do not come from the JSON: `skos:inScheme`, `skos:topConceptOf` (no hierarchy yet), `dcterms:provenance` and `rdfs:seeAlso` (links to the concept's file in this repository), and `dcterms:created`/`dcterms:modified` from the git history.
+
+## Checking a IUPAC json download
+
+`python -I scripts/check_json_files.py <directory>` checks a download without updating the vocabulary: every `*.json` file must be a Gold Book term record with the fields every record has, and `term.code` must match the file name (`<code>.json` or `goldbook_term_<code>.json`).
+It lists each failing file with the reason and exits with 1 if any file fails.
+The import validates the records itself, so the script is only needed to inspect a new download.
