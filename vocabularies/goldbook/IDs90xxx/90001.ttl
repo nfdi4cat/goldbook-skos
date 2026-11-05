@@ -1,0 +1,45 @@
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX goldbook: <https://w3id.org/goldbook/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+goldbook:90001
+    a skos:Collection ;
+    dcterms:created "2026-11-05"^^xsd:date ;
+    dcterms:identifier "90001"^^xsd:token ;
+    dcterms:modified "2026-11-05"^^xsd:date ;
+    dcterms:provenance <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs90xxx/90001.ttl> ;
+    rdfs:isDefinedBy goldbook: ;
+    rdfs:seeAlso <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs90xxx/90001.ttl> ;
+    skos:definition "Gold Book terms indexed as quantities."@en ;
+    skos:inScheme goldbook: ;
+    skos:member
+        goldbook:00024 ,
+        goldbook:00028 ,
+        goldbook:00035 ,
+        goldbook:00038 ,
+        goldbook:00051 ,
+        goldbook:00053 ,
+        goldbook:00056 ,
+        goldbook:00086 ,
+        goldbook:00114 ,
+        goldbook:00115 ,
+        goldbook:00116 ,
+        goldbook:00178 ,
+        goldbook:00295 ,
+        goldbook:00296 ,
+        goldbook:00297 ,
+        goldbook:00346 ,
+        goldbook:00348 ,
+        goldbook:00352 ,
+        goldbook:00353 ,
+        goldbook:00496 ,
+        goldbook:00499 ,
+        goldbook:00513 ,
+        goldbook:04811 ,
+        goldbook:06799 ,
+        goldbook:07312 ,
+        goldbook:07313 ;
+    skos:prefLabel "quantities"@en ;
+.

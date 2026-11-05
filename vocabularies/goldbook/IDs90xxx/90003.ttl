@@ -1,0 +1,21 @@
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX goldbook: <https://w3id.org/goldbook/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+goldbook:90003
+    a skos:Collection ;
+    dcterms:created "2026-11-05"^^xsd:date ;
+    dcterms:identifier "90003"^^xsd:token ;
+    dcterms:modified "2026-11-05"^^xsd:date ;
+    dcterms:provenance <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs90xxx/90003.ttl> ;
+    rdfs:isDefinedBy goldbook: ;
+    rdfs:seeAlso <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs90xxx/90003.ttl> ;
+    skos:definition "Gold Book terms indexed as constants."@en ;
+    skos:inScheme goldbook: ;
+    skos:member
+        goldbook:00497 ,
+        goldbook:00543 ;
+    skos:prefLabel "constants"@en ;
+.
