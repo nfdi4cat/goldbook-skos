@@ -1,8 +1,8 @@
-# Bringing IUPAC gold book to SKOS
+# Bringing IUPAC Gold Book to SKOS
 
-Repository for the goldbook hacking section in [Ontologies4Chem](https://nfdi4chem.de/event/5th-ontologies4chem-workshop/) workshop on Nov 3-5th, 2026 in Limburg.
+Repository for the Gold Book hacking section in [Ontologies4Chem](https://nfdi4chem.de/event/5th-ontologies4chem-workshop/) workshop on Nov 3-5th, 2026 in Limburg.
 
-Sources of goldbooks data:
+Sources of Gold Book data:
  * https://goldbook.iupac.org/pages/api/ (API access currently Cloudflare blocked)
 
 ## Running the import
