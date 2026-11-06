@@ -38,12 +38,12 @@ All labels and definitions get the language tag `@en`.
 | JSON element (`term.…`) | SKOS / RDF property | Comment |
 |---|---|---|
 | `id` | concept IRI, `dcterms:identifier` | IRI `https://w3id.org/goldbook/<id>` (provisional namespace); voc4cat derives the identifier from the IRI |
-| `title` | `skos:prefLabel` | HTML markup kept as is |
+| `title` | `skos:prefLabel`, `skos:altLabel` | `<sup>`/`<sub>` become Unicode super-/subscripts where each of their characters has one (`<sup>13</sup>C` → `¹³C`), other tags are dropped and entities resolved; the ASCII form of a converted label (`13C`) is added as `skos:altLabel` so that search finds it; unknown tags stop the import |
 | `longtitle` | (not mapped) | "IUPAC Gold Book - " + `title` |
 | `doi` | `prov:hadPrimarySource` | as `https://doi.org/<doi>`; the DOI uses `code`, not `id` |
 | `code` | (not mapped) | `id` with an optional letter prefix; used in DOIs and Gold Book URLs |
 | `status` | `skos:editorialNote` | only for a status other than `current`: "Gold Book status: &lt;status&gt;" (temporary) |
-| `synonym` | `skos:altLabel` | `<em>synonym(s)</em>: ` prefix removed, split on ", "; labels equal to the title and duplicates are dropped |
+| `synonym` | `skos:altLabel` | `<em>synonym(s)</em>: ` prefix removed, split on ", ", markup converted as for `title`; labels equal to the prefLabel and duplicates are dropped |
 | `acronym` | `skos:altLabel` | as `synonym` |
 | `initialism` | `skos:altLabel` | as `synonym` |
 | `abbrev` | `skos:altLabel` | as `synonym` |
