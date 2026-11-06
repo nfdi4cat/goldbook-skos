@@ -10,13 +10,13 @@ goldbook:00014
     dcterms:created "2026-11-04"^^xsd:date ;
     dcterms:identifier "00014"^^xsd:token ;
     dcterms:license <https://creativecommons.org/licenses/by-sa/4.0/> ;
-    dcterms:modified "2026-11-04"^^xsd:date ;
+    dcterms:modified "2026-11-06"^^xsd:date ;
     dcterms:provenance <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs00xxx/00014.ttl> ;
     dcterms:rightsHolder "International Union of Pure and Applied Chemistry (IUPAC)" ;
     rdfs:seeAlso <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs00xxx/00014.ttl> ;
     skos:definition "Bond migration, i.e. the formal transfer of one end of a skeletal bond to another position, with a compensating transfer of a hydrogen atom, can be indicated by a prefix of the form '\\(x(y\\rightarrow z)abeo-\\)'. The prefix is compiled as follows: a numeral denoting the stationary (unchanged) end of the migrating bond (x) is followed by parentheses enclosing the locant denoting the original position (y) from which the other end of this bond has migrated, an arrow, and the locant (z) denoting the new position to which the bond has moved. The closing parenthesis is followed by the italicized prefix abeo- (Latin: I go away) to indicate bond migration. The original numbering is retained for the new compound and is used for the numbers x, y and z. It is always necessary to specify the resulting stereochemistry."@en ;
     skos:inScheme goldbook: ;
-    skos:prefLabel "<i>abeo-</i>"@en ;
+    skos:prefLabel "abeo-"@en ;
     skos:topConceptOf goldbook: ;
     prov:hadPrimarySource <https://doi.org/10.1351/goldbook.A00014> ;
 .
