@@ -1,0 +1,22 @@
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX goldbook: <https://w3id.org/goldbook/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+goldbook:00504
+    a skos:Concept ;
+    dcterms:created "2026-11-04"^^xsd:date ;
+    dcterms:identifier "00504"^^xsd:token ;
+    dcterms:license <https://creativecommons.org/licenses/by-sa/4.0/> ;
+    dcterms:modified "2026-11-04"^^xsd:date ;
+    dcterms:provenance <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs00xxx/00504.ttl> ;
+    dcterms:rightsHolder "International Union of Pure and Applied Chemistry (IUPAC)" ;
+    rdfs:seeAlso <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs00xxx/00504.ttl> ;
+    skos:definition "The units designed to simplify the form of the fundamental equations of quantum mechanics by eliminating from them fundamental constants. The atomic unit of length is the Bohr radius, \\(a_{\\rm{o}}=\\frac{h^{2}}{4\\ \\pi ^{2}\\ m\\ e^{2}}=5.291\\ 77249\\times 10^{-11}\\ \\rm{m}\\) (\\(0.529177249\\ \\mathring{\\rm{A}}\\)). Energy is measured in hartrees, where \\(1\\ \\rm{hartree} = \\frac{e^{2}}{a_{\\rm{o}}}=4.359\\ 7482\\times 10^{-18}\\ \\rm{J}\\). Masses are specified in terms of atomic mass unit, \\(\\pu{amu} = \\pu{1.6605402E-27 kg}\\) and of the electron mass unit, \\(m_{\\rm{e}} = \\pu{0.910953E-30 kg}\\). The advantage of atomic units is that if all calculations are directly expressed in such units, the results do not vary with any revision of the numerical values of the fundamental constants."@en ;
+    skos:inScheme goldbook: ;
+    skos:prefLabel "atomic units"@en ;
+    skos:topConceptOf goldbook: ;
+    prov:hadPrimarySource <https://doi.org/10.1351/goldbook.A00504> ;
+.

@@ -1,0 +1,22 @@
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX goldbook: <https://w3id.org/goldbook/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+goldbook:00218
+    a skos:Concept ;
+    dcterms:created "2026-11-04"^^xsd:date ;
+    dcterms:identifier "00218"^^xsd:token ;
+    dcterms:license <https://creativecommons.org/licenses/by-sa/4.0/> ;
+    dcterms:modified "2026-11-04"^^xsd:date ;
+    dcterms:provenance <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs00xxx/00218.ttl> ;
+    dcterms:rightsHolder "International Union of Pure and Applied Chemistry (IUPAC)" ;
+    rdfs:seeAlso <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs00xxx/00218.ttl> ;
+    skos:definition "A known amount of a homogeneous material, assumed to be taken with negligible sampling error. The term is usually applied to fluids. The term 'aliquot' is usually used when the fractional part is an exact divisor of the whole; the term 'aliquant' has been used when the fractional part is not an exact divisor of the whole (e.g. a \\(15\\ \\rm{ml}\\) portion is an aliquant of \\(100\\ \\rm{ml}\\)). When a laboratory sample or test sample is 'aliquoted' or otherwise subdivided, the portions have been called split samples."@en ;
+    skos:inScheme goldbook: ;
+    skos:prefLabel "aliquot"@en ;
+    skos:topConceptOf goldbook: ;
+    prov:hadPrimarySource <https://doi.org/10.1351/goldbook.A00218> ;
+.

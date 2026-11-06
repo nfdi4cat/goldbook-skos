@@ -1,0 +1,22 @@
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX goldbook: <https://w3id.org/goldbook/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+goldbook:00424
+    a skos:Concept ;
+    dcterms:created "2026-11-04"^^xsd:date ;
+    dcterms:identifier "00424"^^xsd:token ;
+    dcterms:license <https://creativecommons.org/licenses/by-sa/4.0/> ;
+    dcterms:modified "2026-11-04"^^xsd:date ;
+    dcterms:provenance <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs00xxx/00424.ttl> ;
+    dcterms:rightsHolder "International Union of Pure and Applied Chemistry (IUPAC)" ;
+    rdfs:seeAlso <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs00xxx/00424.ttl> ;
+    skos:definition "The difference of potential measured between identical metallic leads to two electrodes of a cell. The applied potential is divided into two electrode potentials, each of which is the difference of potential existing between the bulk of the solution and the interior of the conducting material of the electrode, an \\(i\\ R\\) or ohmic potential drop through the solution, and another ohmic potential drop through each electrode. In the electroanalytical literature this quantity has often been denoted by the term voltage, whose continued use is not recommended."@en ;
+    skos:inScheme goldbook: ;
+    skos:prefLabel "applied potential"@en ;
+    skos:topConceptOf goldbook: ;
+    prov:hadPrimarySource <https://doi.org/10.1351/goldbook.A00424> ;
+.

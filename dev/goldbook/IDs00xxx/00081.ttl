@@ -1,0 +1,22 @@
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX goldbook: <https://w3id.org/goldbook/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+goldbook:00081
+    a skos:Concept ;
+    dcterms:created "2026-11-04"^^xsd:date ;
+    dcterms:identifier "00081"^^xsd:token ;
+    dcterms:license <https://creativecommons.org/licenses/by-sa/4.0/> ;
+    dcterms:modified "2026-11-04"^^xsd:date ;
+    dcterms:provenance <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs00xxx/00081.ttl> ;
+    dcterms:rightsHolder "International Union of Pure and Applied Chemistry (IUPAC)" ;
+    rdfs:seeAlso <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs00xxx/00081.ttl> ;
+    skos:definition "Any function that measures the thermodynamic hydron-donating or -accepting ability of a solvent system, or a closely related thermodynamic property, such as the tendency of the lyate ion of the solvent system to form Lewis adduct. (The term 'basicity function' is not in common use in connection with basic solutions.) Acidity functions are not unique properties of the solvent system alone, but depend on the solute (or family of closely related solutes) with respect to which the thermodynamic tendency is measured. Commonly used acidity functions refer to concentrated acidic or basic solutions. Acidity functions are usually established over a range of composition of such a system by UV/VIS spectrophotometric or NMR measurements of the degree of hydronation (protonation or Lewis adduct formation) for the members of a series of structurally similar indicator bases (or acids) of different strength: the best known of these functions is the Hammett acidity function \\(H_{0}\\) (for uncharged indicator bases that are primary aromatic amines)."@en ;
+    skos:inScheme goldbook: ;
+    skos:prefLabel "acidity function"@en ;
+    skos:topConceptOf goldbook: ;
+    prov:hadPrimarySource <https://doi.org/10.1351/goldbook.A00081> ;
+.

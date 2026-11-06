@@ -1,0 +1,22 @@
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX goldbook: <https://w3id.org/goldbook/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+goldbook:00262
+    a skos:Concept ;
+    dcterms:created "2026-11-04"^^xsd:date ;
+    dcterms:identifier "00262"^^xsd:token ;
+    dcterms:license <https://creativecommons.org/licenses/by-sa/4.0/> ;
+    dcterms:modified "2026-11-04"^^xsd:date ;
+    dcterms:provenance <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs00xxx/00262.ttl> ;
+    dcterms:rightsHolder "International Union of Pure and Applied Chemistry (IUPAC)" ;
+    rdfs:seeAlso <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs00xxx/00262.ttl> ;
+    skos:definition "A screening test employed in predicting the mutagenic and the potential carcinogenic activities of chemicals in the environment. It employs Ames test strains of salmonella bacteria ($\\ce{his^{-}}$) which lack the ability to produce histidine. The compound to be tested, the bacteria and a small amount of histidine (insufficient to permit colony growth but enough to allow sufficient growth for expression of mutations) are added to agar. The bacteria are allowed to incubate for about \\(63\\ \\rm{h}\\) at \\(37\\ ^{\\,\\unicode{x26ac}}\\rm{C}\\). If a significant increase in colonies above background is observed in the sample containing the test compound, then it is concluded that the chemical tested is a direct mutagen for the particular Ames strain of bacteria. This is taken as a qualitative indication of the possible carcinogenic activity of this chemical in other biological systems. This procedure seems to be of qualitative value in a preliminary screening of potential carcinogens."@en ;
+    skos:inScheme goldbook: ;
+    skos:prefLabel "Ames/salmonella test"@en ;
+    skos:topConceptOf goldbook: ;
+    prov:hadPrimarySource <https://doi.org/10.1351/goldbook.A00262> ;
+.

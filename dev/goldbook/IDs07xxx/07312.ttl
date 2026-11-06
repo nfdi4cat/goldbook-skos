@@ -1,0 +1,23 @@
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX goldbook: <https://w3id.org/goldbook/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+goldbook:07312
+    a skos:Concept ;
+    dcterms:created "2026-11-04"^^xsd:date ;
+    dcterms:identifier "07312"^^xsd:token ;
+    dcterms:license <https://creativecommons.org/licenses/by-sa/4.0/> ;
+    dcterms:modified "2026-11-04"^^xsd:date ;
+    dcterms:provenance <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs07xxx/07312.ttl> ;
+    dcterms:rightsHolder "International Union of Pure and Applied Chemistry (IUPAC)" ;
+    rdfs:seeAlso <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs07xxx/07312.ttl> ;
+    skos:altLabel "absorbed spectral photon flux density"@en ;
+    skos:definition "Number of photons of a particular wavelength per time interval (spectral photon flux, number basis, \\(q_{\\rm{p},\\lambda }\\), or spectral photon flux, amount basis, \\(q_{n,\\rm{p},\\lambda }\\)) absorbed by a system per volume, \\(V\\). On number basis, SI unit is \\(\\rm{s}^{-1}\\ \\rm{m}^{-4}\\), and the  common unit is \\(\\rm{s}^{-1}\\ \\rm{cm}^{-3}\\ \\rm{nm}^{-1}\\). On amount basis, SI unit is \\(\\pu{mol s-1 m-4}\\), and a common unit is \\(\\pu{einstein s-1 cm-3 nm-1}\\)."@en ;
+    skos:inScheme goldbook: ;
+    skos:prefLabel "absorbed photon flux density"@en ;
+    skos:topConceptOf goldbook: ;
+    prov:hadPrimarySource <https://doi.org/10.1351/goldbook.AT07312> ;
+.

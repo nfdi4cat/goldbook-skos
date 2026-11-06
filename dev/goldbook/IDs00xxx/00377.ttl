@@ -1,0 +1,22 @@
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX goldbook: <https://w3id.org/goldbook/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+goldbook:00377
+    a skos:Concept ;
+    dcterms:created "2026-11-04"^^xsd:date ;
+    dcterms:identifier "00377"^^xsd:token ;
+    dcterms:license <https://creativecommons.org/licenses/by-sa/4.0/> ;
+    dcterms:modified "2026-11-04"^^xsd:date ;
+    dcterms:provenance <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs00xxx/00377.ttl> ;
+    dcterms:rightsHolder "International Union of Pure and Applied Chemistry (IUPAC)" ;
+    rdfs:seeAlso <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs00xxx/00377.ttl> ;
+    skos:definition "When a part of a molecule ('molecular fragment') undergoes two changes in bonding (bond-making or bond-breaking), either to a common centre or to two related centres, external to itself, these bonding changes may be related in one of two spatially different ways. These are designated as 'antarafacial' if opposite faces of the molecular fragment are involved, and 'suprafacial' if both changes occur at the same face. The concept of 'face' is clear from the diagrams in the cases of planar (or approximately planar) frameworks with isolated or interacting p-orbitals [diagrams (a) and (b)].  The terms antarafacial and suprafacial are, however, also employed in cases in which the essential part of the molecular fragment undergoing changes in bonding comprises two atoms linked only by a $\\ce{\\upsigma\\!\\mbox{-}bond}$. In these cases it is customary to refer to the phases of the local $\\ce{\\upsigma\\!\\mbox{-}bonding}$ orbital: occurrence of the two bonding changes at sites of like orbital phase is regarded as suprafacial, whereas that at two sites of opposite phase is antarafacial. The possibilities are shown for $\\ce{C–C}$ and $\\ce{C–H}$ $\\ce{\\upsigma\\!\\mbox{-}bonds}$ in diagrams (c) and (d). There may be two distinct and alternative stereochemical outcomes of a suprafacial process involving a $\\ce{\\upsigma\\!\\mbox{-}bond}$ between saturated carbon atoms, i.e. either retention or inversion at both centres. The antarafacial process results in inversion at one centre and retention at the second. For examples of the use of these terms, see cycloaddition, sigmatropic rearrangement."@en ;
+    skos:inScheme goldbook: ;
+    skos:prefLabel "antarafacial"@en ;
+    skos:topConceptOf goldbook: ;
+    prov:hadPrimarySource <https://doi.org/10.1351/goldbook.A00377> ;
+.

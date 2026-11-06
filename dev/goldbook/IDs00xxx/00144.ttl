@@ -1,0 +1,22 @@
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX goldbook: <https://w3id.org/goldbook/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+goldbook:00144
+    a skos:Concept ;
+    dcterms:created "2026-11-04"^^xsd:date ;
+    dcterms:identifier "00144"^^xsd:token ;
+    dcterms:license <https://creativecommons.org/licenses/by-sa/4.0/> ;
+    dcterms:modified "2026-11-04"^^xsd:date ;
+    dcterms:provenance <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs00xxx/00144.ttl> ;
+    dcterms:rightsHolder "International Union of Pure and Applied Chemistry (IUPAC)" ;
+    rdfs:seeAlso <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs00xxx/00144.ttl> ;
+    skos:definition "The rate of decrease in temperature with increase in altitude of an air parcel which is expanding slowly to a lower atmospheric pressure without exchange of heat; for a descending parcel it is the rate of increase in temperature with decrease in altitude. Theory predicts that for dry air it is equal to the acceleration of gravity divided by the specific heat of dry air at constant pressure (approximately \\(9.8\\ ^{\\unicode{x26ac}} \\rm{C}\\ \\rm{km}^{-1}\\)). The moist adiabatic lapse rate is less than the dry adiabatic lapse rate and depends on the moisture content of the air mass."@en ;
+    skos:inScheme goldbook: ;
+    skos:prefLabel "adiabatic lapse rate"@en ;
+    skos:topConceptOf goldbook: ;
+    prov:hadPrimarySource <https://doi.org/10.1351/goldbook.A00144> ;
+.

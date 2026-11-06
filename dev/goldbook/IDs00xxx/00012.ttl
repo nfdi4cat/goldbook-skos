@@ -1,0 +1,23 @@
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX goldbook: <https://w3id.org/goldbook/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+goldbook:00012
+    a skos:Concept ;
+    dcterms:created "2026-11-04"^^xsd:date ;
+    dcterms:identifier "00012"^^xsd:token ;
+    dcterms:license <https://creativecommons.org/licenses/by-sa/4.0/> ;
+    dcterms:modified "2026-11-04"^^xsd:date ;
+    dcterms:provenance <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs00xxx/00012.ttl> ;
+    dcterms:rightsHolder "International Union of Pure and Applied Chemistry (IUPAC)" ;
+    rdfs:seeAlso <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs00xxx/00012.ttl> ;
+    skos:altLabel "Winstein–Holness A value"@en ;
+    skos:definition "The conformational preference of an equatorial compared to an axial substituent in a monosubstituted cyclohexane. This steric substituent parameter equals \\(\\Delta _{\\rm{r}}G^{\\,\\unicode{x26ac}}\\) in \\(\\pu{kcal mol-1}\\) for the equatorial to axial equilibration on cyclohexane. The values are also known as 'Winstein–Holness' A values."@en ;
+    skos:inScheme goldbook: ;
+    skos:prefLabel "'A' value"@en ;
+    skos:topConceptOf goldbook: ;
+    prov:hadPrimarySource <https://doi.org/10.1351/goldbook.A00012> ;
+.

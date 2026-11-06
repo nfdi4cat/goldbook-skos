@@ -1,0 +1,26 @@
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX goldbook: <https://w3id.org/goldbook/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+goldbook:11567
+    a skos:Concept ;
+    dcterms:created "2026-11-04"^^xsd:date ;
+    dcterms:identifier "11567"^^xsd:token ;
+    dcterms:license <https://creativecommons.org/licenses/by-sa/4.0/> ;
+    dcterms:modified "2026-11-04"^^xsd:date ;
+    dcterms:provenance <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs11xxx/11567.ttl> ;
+    dcterms:rightsHolder "International Union of Pure and Applied Chemistry (IUPAC)" ;
+    rdfs:seeAlso <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs11xxx/11567.ttl> ;
+    skos:altLabel
+        "(R)-4-(1-hydroxy-2-(methylamino)ethyl)benzene-1,2-diol"@en ,
+        "adrenaline"@en ,
+        "epinephrine"@en ;
+    skos:definition "Catecholamine hormone secreted by the adrenal glands that increases heart rate, breathing rate, blood pressure, and carbohydrate metabolism."@en ;
+    skos:inScheme goldbook: ;
+    skos:prefLabel "adrenalin"@en ;
+    skos:topConceptOf goldbook: ;
+    prov:hadPrimarySource <https://doi.org/10.1351/goldbook.11567> ;
+.

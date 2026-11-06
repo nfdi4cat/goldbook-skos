@@ -1,0 +1,22 @@
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX goldbook: <https://w3id.org/goldbook/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+goldbook:00258
+    a skos:Concept ;
+    dcterms:created "2026-11-04"^^xsd:date ;
+    dcterms:identifier "00258"^^xsd:token ;
+    dcterms:license <https://creativecommons.org/licenses/by-sa/4.0/> ;
+    dcterms:modified "2026-11-04"^^xsd:date ;
+    dcterms:provenance <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs00xxx/00258.ttl> ;
+    dcterms:rightsHolder "International Union of Pure and Applied Chemistry (IUPAC)" ;
+    rdfs:seeAlso <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs00xxx/00258.ttl> ;
+    skos:definition "A description applied to a chemical species whose molecular entities each possess two alternative and strongly interacting distinguishable reactive centres, to either of which a bond may be made in a reaction: the centres must be connected in such a way that reaction at either site stops or greatly retards subsequent attack at the second site. The term is most commonly applied to conjugated nucleophiles, for example the enolate ion:  (which may react with electrophiles either at the $\\ce{\\upbeta\\!\\mbox{-}carbon atom}$ or at oxygen) or $\\ce{\\upgamma\\!\\mbox{-}pyridones}$, and also to the vicinally ambident cyanide ion, cyanate ion, thiocyanate ion, sulfinate ion, nitrite ion and unsymmetrical hydrazines. Ambident electrophiles are exemplified by carboxylic esters $\\ce{RC(=O)OCR3}$ which react with nucleophiles either at the carbonyl carbon or the alkoxy carbon. Molecular entities, such as dianions of dicarboxylic acids, containing two non-interacting (or feebly interacting) reactive centres, are not generally considered to be ambident and are better described as 'bifunctional'. The Latin root of the word implies two reactive centres, but the term has in the past also incorrectly been applied to chemical species with more than two reactive centres. For such species the existing term 'polydent' (or, better, 'multident') is more appropriate."@en ;
+    skos:inScheme goldbook: ;
+    skos:prefLabel "ambident"@en ;
+    skos:topConceptOf goldbook: ;
+    prov:hadPrimarySource <https://doi.org/10.1351/goldbook.A00258> ;
+.

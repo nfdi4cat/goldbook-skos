@@ -1,0 +1,23 @@
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX goldbook: <https://w3id.org/goldbook/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+goldbook:15314
+    a skos:Concept ;
+    dcterms:created "2026-11-04"^^xsd:date ;
+    dcterms:identifier "15314"^^xsd:token ;
+    dcterms:license <https://creativecommons.org/licenses/by-sa/4.0/> ;
+    dcterms:modified "2026-11-04"^^xsd:date ;
+    dcterms:provenance <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs15xxx/15314.ttl> ;
+    dcterms:rightsHolder "International Union of Pure and Applied Chemistry (IUPAC)" ;
+    rdfs:seeAlso <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs15xxx/15314.ttl> ;
+    skos:altLabel "solvomolality"@en ;
+    skos:definition "For a solute \\(\\ce{B}\\) in a system containing solvent \\(\\ce{A}\\) and a reference solvent \\(\\ce{C}\\), \\[m_{\\ce{B}}^{(\\ce{C})} = m_{\\ce{B}} \\overline M/M_{\\ce{C}}\\] where \\(m_{\\ce{B}}\\) is the molality of \\(\\ce{B}\\), \\(M_{\\ce{C}}\\) is the molar mass of a reference component, and \\(\\overline{M}\\) is the average molar mass of a mixed solvent, defined for a system containing two solvents as \\[\\overline M = x_{\\nu,\\ce{A}} M_{\\ce{A}} + (1 - x_{\\nu,\\ce{A}}) M_{\\ce{C}}\\] the solvent amount fraction of solvent \\(\\ce{A}\\)."@en ;
+    skos:inScheme goldbook: ;
+    skos:prefLabel "aquamolality"@en ;
+    skos:topConceptOf goldbook: ;
+    prov:hadPrimarySource <https://doi.org/10.1351/goldbook.15314> ;
+.

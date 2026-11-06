@@ -1,0 +1,22 @@
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX goldbook: <https://w3id.org/goldbook/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+goldbook:00415
+    a skos:Concept ;
+    dcterms:created "2026-11-04"^^xsd:date ;
+    dcterms:identifier "00415"^^xsd:token ;
+    dcterms:license <https://creativecommons.org/licenses/by-sa/4.0/> ;
+    dcterms:modified "2026-11-04"^^xsd:date ;
+    dcterms:provenance <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs00xxx/00415.ttl> ;
+    dcterms:rightsHolder "International Union of Pure and Applied Chemistry (IUPAC)" ;
+    rdfs:seeAlso <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs00xxx/00415.ttl> ;
+    skos:definition "In trigonal bipyramidal structures (e.g. a five-coordinate trigonal bipyramid with phosphorus as central atom) the term apical refers to the two positions that are collinear with the central atom or to the bonds linking these positions to the central atom. The three equivalent bonds (or positions) in a plane passing through the central atom and perpendicular to the direction of the apical bonds are described as equatorial.  The term apical is also used for the bond pointing from the atom at or near the centre of the base to the apex of a pyramidal structure. The positions at or near the base of the pyramid, or the bonds linking those positions to the central atom of the base are described as 'basal'. The apical bonds have also been called axial."@en ;
+    skos:inScheme goldbook: ;
+    skos:prefLabel "apical"@en ;
+    skos:topConceptOf goldbook: ;
+    prov:hadPrimarySource <https://doi.org/10.1351/goldbook.A00415> ;
+.

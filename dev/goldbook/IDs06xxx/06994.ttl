@@ -1,0 +1,27 @@
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX goldbook: <https://w3id.org/goldbook/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+goldbook:06994
+    a skos:Concept ;
+    dcterms:created "2026-11-04"^^xsd:date ;
+    dcterms:identifier "06994"^^xsd:token ;
+    dcterms:license <https://creativecommons.org/licenses/by-sa/4.0/> ;
+    dcterms:modified "2026-11-04"^^xsd:date ;
+    dcterms:provenance <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs06xxx/06994.ttl> ;
+    dcterms:rightsHolder "International Union of Pure and Applied Chemistry (IUPAC)" ;
+    rdfs:seeAlso <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs06xxx/06994.ttl> ;
+    skos:altLabel "MO"@en ;
+    skos:definition """The charge attributed to an atom \\(A\\) within a molecule defined as \\(\\zeta =Z_{\\rm{A}}- q_{\\rm{A}}\\), where \\(Z_{\\rm{A}}\\) is the atomic number of \\(A\\) and \\(q_{\\rm{A}}\\) is the electron density assigned to \\(A\\). The method of calculation of \\(q_{\\rm{A}}\\) depends on the choice of the scheme of partitioning electron density. In the framework of the Mulliken population analysis \\(q_{\\rm{A}}\\) is associated with the so-called gross atomic population: \\(q_{\\rm{A}}=\\sum q_{\\unicode[Times]{x3BC}}\\), where \\(q_{\\unicode[Times]{x3BC}}\\) is a gross population for an orbital \\(\\unicode[Times]{x3BC}\\) in the basis set employed defined according to \\[q_{\\unicode[Times]{x3BC}} = P_{\\unicode[Times]{x3BC}\\unicode[Times]{x3BC}}+\\sum _{\\begin{array}{c}
+
+\\nu \\neq \\unicode[Times]{x3BC} 
+
+\\end{array}}P_{\\unicode[Times]{x3BC}\\nu}\\ S_{\\unicode[Times]{x3BC}\\nu}\\] where \\(P_{\\unicode[Times]{x3BC}\\unicode[Times]{x3BD} }\\) and \\(S_{\\unicode[Times]{x3BC}\\unicode[Times]{x3BD}}\\) are the elements of density matrix and overlap matrix, respectively (see overlap integral). In the Hückel molecular orbital theory (where \\(S_{\\unicode[Times]{x3BC}\\nu} = \\delta _{\\unicode[Times]{x3BC}\\nu}\\)), \\(q_{\\unicode[Times]{x3BC}} = n_{\\unicode[Times]{x3BC}}\\ P_{\\unicode[Times]{x3BC}\\unicode[Times]{x3BC}}\\), where \\(n_{\\unicode[Times]{x3BC}}\\) is the number of electrons in the \\(\\rm{MO}\\,\\unicode[Times]{x3BC}\\)."""@en ;
+    skos:inScheme goldbook: ;
+    skos:prefLabel "atomic charge"@en ;
+    skos:topConceptOf goldbook: ;
+    prov:hadPrimarySource <https://doi.org/10.1351/goldbook.AT06994> ;
+.

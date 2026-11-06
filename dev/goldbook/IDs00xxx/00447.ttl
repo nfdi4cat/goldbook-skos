@@ -1,0 +1,22 @@
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX goldbook: <https://w3id.org/goldbook/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+goldbook:00447
+    a skos:Concept ;
+    dcterms:created "2026-11-04"^^xsd:date ;
+    dcterms:identifier "00447"^^xsd:token ;
+    dcterms:license <https://creativecommons.org/licenses/by-sa/4.0/> ;
+    dcterms:modified "2026-11-04"^^xsd:date ;
+    dcterms:provenance <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs00xxx/00447.ttl> ;
+    dcterms:rightsHolder "International Union of Pure and Applied Chemistry (IUPAC)" ;
+    rdfs:seeAlso <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs00xxx/00447.ttl> ;
+    skos:definition "The saturated hydrides of tervalent arsenic, having the general formula $\\ce{As_{n}H_{n+2}}$. Individual members having an unbranched arsenic chain are named arsane, diarsane, triarsane, etc. The name of a saturated hydride of arsenic where one or more arsenic atoms have bonding number 5 is formed by prefixing locants and \\(\\lambda ^{5}\\) symbols to the name of the corresponding arsane, e.g. $\\ce{H2AsAsHAsH2}$ triarsane, $\\ce{H4AsAsH3AsH4}$ 1\\(\\lambda ^{5}\\),2\\(\\lambda ^{5}\\),3\\(\\lambda ^{5}\\)-triarsane. Hydrocarbyl derivatives of $\\ce{AsH3}$ belong to the class arsines."@en ;
+    skos:inScheme goldbook: ;
+    skos:prefLabel "arsanes"@en ;
+    skos:topConceptOf goldbook: ;
+    prov:hadPrimarySource <https://doi.org/10.1351/goldbook.A00447> ;
+.
