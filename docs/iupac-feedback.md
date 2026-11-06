@@ -31,3 +31,14 @@ Separator ";" instead of ", ":
 | id | title | field | value |
 |---|---|---|---|
 | 12354 | charge-mediated fragmentation | synonym | heterolytic fragmentation; inductive cleavage |
+
+## Unclosed LaTeX formulas in definitions
+
+In these definitions a formula opened with `$\ce{` has neither the closing `}` nor the closing `$`.
+A math renderer pairs the stray `$` with the next one, so the text up to the next formula is typeset as one broken formula.
+
+| id | title | text | probably meant |
+|---|---|---|---|
+| 02661 | glycosides | `$\ce{RO– (which itself may be derived from a saccharide…` | `$\ce{RO–}$` |
+| 02699 | Grignard reagents | `$\ce{RMgX, having a carbon–magnesium bond…` | `$\ce{RMgX}$` |
+| 04566 | phosphoramides | `$\ce{P(=O)(NR2)3, since replacement of one or two…` | `$\ce{P(=O)(NR2)3}$` |
