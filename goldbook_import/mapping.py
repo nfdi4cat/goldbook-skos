@@ -8,6 +8,7 @@ use; fields without a rule keep the model's default.
 
 import re
 from collections.abc import Callable
+from html.parser import HTMLParser
 
 from pydantic import BaseModel, ValidationError
 from voc4cat.models_v1 import CollectionV1
@@ -29,6 +30,64 @@ INDEX_COLLECTIONS = {
 # Label fields start with their kind, e.g. "<em>synonyms</em>: ".
 LABEL_PREFIX = re.compile(r"^\s*<em>[^<]*</em>:\s*")
 
+# Characters with a Unicode superscript or subscript form; "−" is the minus sign.
+SCRIPT_CHARACTERS = {
+    "sup": str.maketrans(
+        "0123456789+-−=()abcdefghijklmnoprstuvwxyz",
+        "⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻⁻⁼⁽⁾ᵃᵇᶜᵈᵉᶠᵍʰⁱʲᵏˡᵐⁿᵒᵖʳˢᵗᵘᵛʷˣʸᶻ",
+    ),
+    "sub": str.maketrans("0123456789+-−=()aehijklmnoprstuvx", "₀₁₂₃₄₅₆₇₈₉₊₋₋₌₍₎ₐₑₕᵢⱼₖₗₘₙₒₚᵣₛₜᵤᵥₓ"),
+}
+# Markup that only styles text; its content is kept and the tags dropped.
+STYLE_TAGS = {"i", "em", "span"}
+
+
+class LabelParser(HTMLParser):
+    """Collects the display and ASCII forms of one label with Gold Book markup."""
+
+    def __init__(self) -> None:
+        super().__init__(convert_charrefs=True)
+        self.display: list[str] = []
+        self.ascii: list[str] = []
+        self.script: tuple[str, list[str]] | None = None
+
+    def handle_starttag(self, tag: str, attrs: list) -> None:
+        if tag in SCRIPT_CHARACTERS and self.script is None:
+            self.script = (tag, [])
+        elif tag not in STYLE_TAGS:
+            raise ValueError(f"unexpected markup <{tag}> in label")
+
+    def handle_endtag(self, tag: str) -> None:
+        if self.script is None or tag != self.script[0]:
+            return
+        text = "".join(self.script[1])
+        table = SCRIPT_CHARACTERS[tag]
+        self.display.append(text.translate(table) if all(ord(c) in table for c in text) else text)
+        self.ascii.append(text)
+        self.script = None
+
+    def handle_data(self, data: str) -> None:
+        if self.script is None:
+            self.display.append(data)
+            self.ascii.append(data)
+        else:
+            self.script[1].append(data)
+
+
+def label_forms(raw: str) -> tuple[str, str]:
+    """Display and ASCII form of a label with Gold Book markup.
+
+    The display form writes superscripts and subscripts with Unicode characters
+    if each of their characters has one; the ASCII form writes them inline, as
+    users type them in a search. Both drop style markup and resolve entities.
+    """
+    parser = LabelParser()
+    parser.feed(raw)
+    parser.close()
+    if parser.script is not None:
+        raise ValueError(f"unclosed <{parser.script[0]}> in label")
+    return "".join(parser.display), "".join(parser.ascii)
+
 
 class MappingError(Exception):
     """A rule failed for one record."""
@@ -37,11 +96,6 @@ class MappingError(Exception):
         super().__init__(f"mapping of field {field!r} failed for Gold Book id {record_id}")
         self.record_id = record_id
         self.field = field
-
-
-def copy(attribute: str) -> Rule:
-    """Rule returning the record's attribute unchanged."""
-    return lambda record, index: getattr(record, attribute)
 
 
 def const(value: object) -> Rule:
@@ -61,14 +115,20 @@ def split_labels(raw: str | None) -> list[str]:
     return [label.strip() for label in text.split(", ") if label.strip()]
 
 
+def preferred_label(record: GoldbookTerm, index: TermIndex) -> str:
+    return label_forms(record.title)[0]
+
+
 def alternate_labels(record: GoldbookTerm, index: TermIndex) -> str:
-    # SKOS requires prefLabel and altLabels to be disjoint; dict keeps first-seen order.
-    labels = {
-        label: None
+    """Display forms of all label fields, plus ASCII forms that differ, title's first."""
+    title = label_forms(record.title)
+    forms = [title] + [
+        label_forms(label)
         for field in LABEL_FIELDS
         for label in split_labels(getattr(record, field))
-        if label != record.title
-    }
+    ]
+    # SKOS requires prefLabel and altLabels to be disjoint; dict keeps first-seen order.
+    labels = {form: None for pair in forms for form in pair if form != title[0]}
     return "|".join(labels)
 
 
@@ -94,7 +154,7 @@ def status_note(record: GoldbookTerm, index: TermIndex) -> str:
 CONCEPT_RULES: dict[str, Rule] = {
     "concept_iri": lambda record, index: index.iri(record),
     "language_code": const("en"),
-    "preferred_label": copy("title"),
+    "preferred_label": preferred_label,
     "definition": definition,
     "alternate_labels": alternate_labels,
     "source_vocab_iri": lambda record, index: "https://doi.org/" + record.doi,

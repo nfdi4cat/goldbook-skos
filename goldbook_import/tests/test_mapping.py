@@ -7,6 +7,7 @@ from voc4cat.models_v1 import ConceptV1
 from goldbook_model import TermIndex, load_terms
 from mapping import (
     CONCEPT_RULES,
+    LABEL_FIELDS,
     MappingError,
     build_collections,
     build_rows,
@@ -98,6 +99,51 @@ def test_alternate_labels_exclude_title_and_duplicates():
     )
     rows = build_rows(ConceptV1, CONCEPT_RULES, [cip], TermIndex([cip], BASE))
     assert rows[0].alternate_labels == "priority|CIP"
+
+
+def _labels(**fields):
+    """(preferred_label, alternate_labels) of the CIP fixture record with the given fields."""
+    records, _ = load_terms(FIXTURES)
+    cip = next(r for r in records if r.code == "C01082").model_copy(
+        update={**dict.fromkeys(LABEL_FIELDS), **fields}
+    )
+    row = build_rows(ConceptV1, CONCEPT_RULES, [cip], TermIndex([cip], BASE))[0]
+    return row.preferred_label, row.alternate_labels
+
+
+@pytest.mark.parametrize(
+    ("title", "expected"),
+    [
+        ("<sup>13</sup>C-HMQC-NOESY", ("¹³C-HMQC-NOESY", "13C-HMQC-NOESY")),
+        ("<em>n</em><sup>th</sup>-order effect", ("nᵗʰ-order effect", "nth-order effect")),
+        ("MS<sup><i>n</i></sup>", ("MSⁿ", "MSn")),
+        ("<em>t</em><sub>1</sub> noise", ("t₁ noise", "t1 noise")),
+        ("pH<sub>0.5</sub> or pH<sub>1/2</sub>", ("pH0.5 or pH1/2", "")),
+        ("<i>β</i>, <i>β</i><sub>nuc</sub>", ("β, βnuc", "")),
+        ("<i>ab initio</i> methods", ("ab initio methods", "")),
+        ('<span class="s">LIDAR</span>', ("LIDAR", "")),
+        ("M&#xF8;ssbauer effect", ("Møssbauer effect", "")),
+    ],
+)
+def test_title_markup_becomes_unicode_label_with_ascii_alternate(title, expected):
+    assert _labels(title=title) == expected
+
+
+def test_synonym_markup_becomes_unicode_label_with_ascii_alternate():
+    assert _labels(synonym="<em>synonym</em>: CO<sub>2</sub> laser") == (
+        "CIP priority",
+        "CO₂ laser|CO2 laser",
+    )
+
+
+def test_unknown_markup_in_label_names_record_and_field():
+    records, _ = load_terms(FIXTURES)
+    cip = next(r for r in records if r.code == "C01082").model_copy(
+        update={"title": "CIP <b>priority</b>"}
+    )
+    with pytest.raises(MappingError) as exc:
+        build_rows(ConceptV1, CONCEPT_RULES, [cip], TermIndex([cip], BASE))
+    assert (exc.value.field, exc.value.record_id) == ("preferred_label", "01082")
 
 
 def test_rule_for_unknown_field_is_rejected():
