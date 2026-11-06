@@ -29,6 +29,10 @@ What an update changes:
 - If nothing changed, the CI closes the pull request.
 - New ids must lie in an `id_range` of the pull request's author in `idranges.toml` on `main`.
 
+## Viewing the vocabulary in Skosmos
+
+[docs/skosmos-local.md](docs/skosmos-local.md) describes how to run the customised Skosmos with the Gold Book vocabulary locally.
+
 ## Mapping of Gold Book JSON to SKOS
 
 The import ([goldbook_import](goldbook_import/README.md)) maps each Gold Book term file to one `skos:Concept`.
