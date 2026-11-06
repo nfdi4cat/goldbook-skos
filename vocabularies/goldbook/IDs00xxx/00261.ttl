@@ -10,13 +10,13 @@ goldbook:00261
     dcterms:created "2026-11-04"^^xsd:date ;
     dcterms:identifier "00261"^^xsd:token ;
     dcterms:license <https://creativecommons.org/licenses/by-sa/4.0/> ;
-    dcterms:modified "2026-11-04"^^xsd:date ;
+    dcterms:modified "2026-11-06"^^xsd:date ;
     dcterms:provenance <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs00xxx/00261.ttl> ;
     dcterms:rightsHolder "International Union of Pure and Applied Chemistry (IUPAC)" ;
     rdfs:seeAlso <https://github.com/nfdi4cat/goldbook-skos/blame/main/vocabularies/goldbook/IDs00xxx/00261.ttl> ;
     skos:definition "A prefix used to indicate that a molecule with two (or more) chiral elements is present as a mixture of the two racemic diastereoisomers in unspecified proportions. For example, the dipeptide formed from ʟ-alanine and ᴅʟ-leucine is ʟ-alanyl-ambo-leucine."@en ;
     skos:inScheme goldbook: ;
-    skos:prefLabel "<i>ambo</i>"@en ;
+    skos:prefLabel "ambo"@en ;
     skos:topConceptOf goldbook: ;
     prov:hadPrimarySource <https://doi.org/10.1351/goldbook.A00261> ;
 .

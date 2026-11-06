@@ -9,7 +9,7 @@ goldbook:
     a skos:ConceptScheme ;
     dcterms:created "2026-11-04"^^xsd:date ;
     dcterms:creator <https://orcid.org/0000-0002-5898-1820> ;
-    dcterms:modified "2026-11-05"^^xsd:date ;
+    dcterms:modified "2026-11-06"^^xsd:date ;
     dcterms:publisher <https://ror.org/03ne2zw20> ;
     skos:definition "Draft SKOS version of the IUPAC Compendium of Chemical Terminology (Gold Book), generated from the Gold Book JSON for feedback. IRIs and content are provisional."@en ;
     skos:hasTopConcept
