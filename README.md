@@ -1,9 +1,18 @@
 # Bringing IUPAC Gold Book to SKOS
 
-Repository for the Gold Book hacking section in [Ontologies4Chem](https://nfdi4chem.de/event/5th-ontologies4chem-workshop/) workshop on Nov 3-5th, 2026 in Limburg.
+This repository was created for the Gold Book hacking section in the [Ontologies4Chem](https://nfdi4chem.de/event/5th-ontologies4chem-workshop/) workshop on Nov 3-5th, 2026 in Limburg an der Lahn, Germany.
+
+The work is related to the IUPAC project [Enhancing the technical architecture and programmatic services of the IUPAC Gold Book](https://iupac.org/project/2026-030-1-024/).
 
 Sources of Gold Book data:
- * https://goldbook.iupac.org/pages/api/ (API access currently Cloudflare blocked)
+* https://goldbook.iupac.org/pages/api/ (API access currently Cloudflare blocked)
+* For the first experiments only 1000 concepts were imported. Importing the full Gold Book does not require any changes to the tooling.
+
+[SKOSMOS](https://github.com/NatLibFi/Skosmos) support (see [docs](docs/skosmos-local.md) for details):
+* Support for custom formatted preferred labels of concepts, see <sup>13</sup>C-NMR... in screenshot below.
+* **Math support in definitions** requires a fixed SKOSMOS but has already been implemented
+
+![SKOSMOS with math](docs/images/skosmos-iupac-math.png)
 
 ## Running the import
 
@@ -80,3 +89,22 @@ voc4cat tool adds further triples to every concept that do not come from the JSO
 `python -I scripts/check_json_files.py <directory>` checks a download without updating the vocabulary: every `*.json` file must be a Gold Book term record with the fields every record has, and `term.code` must match the file name (`<code>.json` or `goldbook_term_<code>.json`).
 It lists each failing file with the reason and exits with 1 if any file fails.
 The import validates the records itself, so the script is only needed to inspect a new download.
+
+## License
+
+### Vocabularies
+
+The IUOAC Gold Book concepts in this repository are CC-BY-SA 4.0 licensed, see [LICENSE](LICENSE) for details.
+
+### Voc4Cat template & code
+
+The underlying repository template and the code for importing Gold Book json to SKOS is CC0-1.0 licensed, see [LICENSE](https://github.com/nfdi4cat/voc4cat-template/blob/main/LICENSE).
+
+## Authors and Contributors
+
+* Stuart Chalk (ORCID: 0000-0002-0703-7776) - Initial 1000 Gold Book concepts
+* David Linke (ORCID: 0000-0002-5898-1820) - Concept, source code
+
+## Acknowledgement
+
+This work was partially funded by the German Research Foundation (DFG) through the project "[NFDI4Cat](https://nfdi4cat.org) - NFDI for Catalysis-Related Sciences" (DFG project no. [441926934](https://gepris.dfg.de/gepris/projekt/441926934)), within the National Research Data Infrastructure ([NFDI](https://www.nfdi.de)) programme of the Joint Science Conference (GWK).
