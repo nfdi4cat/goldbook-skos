@@ -8,11 +8,11 @@ Sources of Gold Book data:
 * https://goldbook.iupac.org/pages/api/ (API access currently Cloudflare blocked)
 * For the first experiments only 1000 concepts were imported. Importing the full Gold Book does not require any changes to the tooling.
 
-[SKOSMOS](https://github.com/NatLibFi/Skosmos) support (see [docs](docs/skosmos-local.md) for details):
+[Skosmos](https://github.com/NatLibFi/Skosmos) support (see [docs](docs/skosmos-local.md) for details):
 * Support for custom formatted preferred labels of concepts, see <sup>13</sup>C-NMR... in screenshot below.
-* **Math support in definitions** requires a fixed SKOSMOS but has already been implemented
+* **Math support in definitions** requires a fixed Skosmos but has already been implemented
 
-![SKOSMOS with math](docs/images/skosmos-iupac-math.png)
+![Skosmos with math](docs/images/skosmos-iupac-math.png)
 
 ## Running the import
 
@@ -82,9 +82,9 @@ All labels and definitions get the language tag `@en`.
 | `accessed` | (not mapped) | |
 | (none) | `dcterms:rightsHolder` | constant "International Union of Pure and Applied Chemistry (IUPAC)" |
 
-voc4cat tool adds further triples to every concept that do not come from the JSON: `skos:inScheme`, `skos:topConceptOf` (no hierarchy yet), `dcterms:provenance` and `rdfs:seeAlso` (links to the concept's file in this repository), and `dcterms:created`/`dcterms:modified` from the git history.
+The voc4cat tool adds further triples to every concept that do not come from the JSON: `skos:inScheme`, `skos:topConceptOf` (no hierarchy yet), `dcterms:provenance` and `rdfs:seeAlso` (links to the concept's file in this repository), and `dcterms:created`/`dcterms:modified` from the git history.
 
-## Checking a IUPAC json download
+## Checking an IUPAC JSON download
 
 `python -I scripts/check_json_files.py <directory>` checks a download without updating the vocabulary: every `*.json` file must be a Gold Book term record with the fields every record has, and `term.code` must match the file name (`<code>.json` or `goldbook_term_<code>.json`).
 It lists each failing file with the reason and exits with 1 if any file fails.
@@ -94,7 +94,7 @@ The import validates the records itself, so the script is only needed to inspect
 
 ### Vocabularies
 
-The IUOAC Gold Book concepts in this repository are CC-BY-SA 4.0 licensed, see [LICENSE](LICENSE) for details.
+The IUPAC Gold Book concepts in this repository are CC-BY-SA 4.0 licensed, see [LICENSE](LICENSE) for details.
 
 ### Voc4Cat template & code
 
